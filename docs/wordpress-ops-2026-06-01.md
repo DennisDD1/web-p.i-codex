@@ -45,12 +45,13 @@ Page cleanup:
 Cache:
 
 - Ran `wp fastest-cache clear all --allow-root` after page cleanup.
+- Removed stale WP Fastest Cache files under `/var/www/html/wp-content/cache/all/elements/` after explicit user confirmation. This removed old public HTML for drafted Flatsome demo pages.
 
-Verification completed before command quota stopped:
+Verification:
 
 - Homepage returned HTTP 200 and Cloudflare homepage cache remained active.
 - Cart returned HTTP 200 and remained dynamic.
-- `/elements/` still returned HTTP 200 after cache clear, so follow-up investigation is needed to determine whether another route/cache is still serving it.
+- `/elements/` returned HTTP 404 after stale cache removal.
 
 Rollback examples:
 
