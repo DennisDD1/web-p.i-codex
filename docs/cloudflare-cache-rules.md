@@ -35,7 +35,7 @@ Rollback:
 
 - Disable or delete Cloudflare rule `Cache static assets 30 days`.
 
-## Proposed next rule: anonymous homepage HTML cache
+## 2026-06-01 anonymous homepage HTML cache
 
 Reason:
 
@@ -43,12 +43,35 @@ Reason:
 - External homepage TTFB through Cloudflare is about `1.28s`.
 - Homepage HTML is currently `cf-cache-status: DYNAMIC`, so anonymous visitors still cross-region back to origin.
 
-Safe approach:
+Rule name:
 
-- Add a bypass rule for logged-in/cart/checkout/account/admin/API requests.
-- Add a narrow cache rule for `https://painter.ink/` only.
-- Keep checkout, cart, my-account, wp-admin, wp-login, wp-json, and WooCommerce AJAX/API dynamic.
+- `Cache anonymous homepage 2 hours`
+
+Expression:
+
+```txt
+(http.host eq "painter.ink" and http.request.uri.path eq "/" and not http.cookie contains "wordpress_logged_in" and not http.cookie contains "woocommerce_items_in_cart" and not http.cookie contains "woocommerce_cart_hash" and not http.cookie contains "wp_woocommerce_session")
+```
+
+Actions:
+
+- Cache eligibility: eligible for cache.
+- Edge TTL: 2 hours.
+- Browser TTL: not set.
+
+Safety scope:
+
+- Only `https://painter.ink/` is cached.
+- Logged-in users and WooCommerce cart/session cookies are excluded.
+- Cart, checkout, account, admin, login, API, and product pages are not matched by this rule.
+
+Verification:
+
+- First anonymous homepage request returned `cf-cache-status: MISS`.
+- Subsequent anonymous homepage requests returned `cf-cache-status: HIT` with `age` increasing.
+- Homepage with WooCommerce cart/session cookies returned `cf-cache-status: DYNAMIC`.
+- `/cart/` returned `cf-cache-status: DYNAMIC`.
 
 Rollback:
 
-- Disable or delete the homepage HTML cache rule and any matching bypass rule.
+- Disable or delete Cloudflare rule `Cache anonymous homepage 2 hours`.
