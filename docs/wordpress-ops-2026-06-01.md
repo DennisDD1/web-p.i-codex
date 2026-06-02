@@ -62,3 +62,51 @@ wp db import /home/admin/painter-backups/20260601T150542Z/database.sql.gz --allo
 ```
 
 For page status rollback, use `/home/admin/painter-backups/20260601T150542Z/pages.csv` as the source list.
+
+## Follow-up cleanup on 2026-06-02
+
+Rollback backup created before changes:
+
+- `/home/admin/painter-backups/20260602T020458Z`
+
+Backup contents:
+
+- `database.sql.gz`
+- `wp-content-uploads-public-risk-files.tar.gz`
+- `flatsome-child.tar.gz`
+- `functions.php.before-featured-archive-hide`
+- `comments.csv`
+- `featured_items.csv`
+- `pages.csv`
+
+Changes:
+
+- Added `Options -Indexes` to `wp-content/uploads/.htaccess` so visitors cannot browse the uploads folder.
+- Removed public `wp-content/uploads/painter-child-theme-codex.tar.gz` after backing it up.
+- Changed Flatsome demo portfolio items `228-235` from `publish` to `draft`.
+- Moved FAQ page `90` to top level so its public URL is `/faq/` instead of the old `Elements > Pages` path.
+- Set Yoast SEO to noindex `featured_item`, its archive, and related featured item taxonomies.
+- Rebuilt Yoast indexables with `wp yoast index --reindex --skip-confirmation --allow-root`.
+- Removed stale WP Fastest Cache files for old demo URLs and sitemaps.
+- Added child theme logic to return 404 for leftover `/featured_item/` public routes.
+
+Verification:
+
+- `/wp-content/uploads/` returned HTTP 403.
+- `/wp-content/uploads/painter-child-theme-codex.tar.gz` returned HTTP 404.
+- `/featured_item/` returned HTTP 404.
+- `/featured_item/flat-t-shirt-company/` returned HTTP 404.
+- `/elements/`, `/test/`, `/sample-page/`, and `/demos/` returned HTTP 404.
+- `/faq/` returned HTTP 200.
+- `/elements/pages/faq/` returned HTTP 404.
+- Homepage returned HTTP 200 and Cloudflare HIT.
+- Shop returned HTTP 200.
+
+Rollback examples:
+
+```bash
+cd /var/www/html
+sudo cp /home/admin/painter-backups/20260602T020458Z/functions.php.before-featured-archive-hide wp-content/themes/flatsome-child/functions.php
+sudo tar -xzf /home/admin/painter-backups/20260602T020458Z/wp-content-uploads-public-risk-files.tar.gz -C /var/www/html
+wp db import /home/admin/painter-backups/20260602T020458Z/database.sql.gz --allow-root
+```
