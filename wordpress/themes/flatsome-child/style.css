@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.16
+Version: 3.0.17
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -252,9 +252,9 @@ Version: 3.0.16
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 5px;
-	max-width: 260px;
-	padding: 14px 16px;
+	gap: 8px;
+	max-width: 300px;
+	padding: 17px 50px 17px 18px;
 	border: 1px solid rgba(255, 255, 255, 0.14);
 	border-radius: 8px;
 	background: #00bf63;
@@ -269,14 +269,26 @@ Version: 3.0.16
 }
 
 .painter-offer-bar span {
+	display: inline-flex;
+	align-items: center;
+	min-height: 28px;
+	padding: 4px 10px;
+	border: 1px solid rgba(255, 255, 255, 0.34);
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.16);
 	color: #fff;
+	font-size: 13px;
 	font-weight: 700;
+	line-height: 1.15;
 	text-transform: uppercase;
 }
 
 .painter-offer-bar strong {
-	font-size: 14px;
-	font-weight: 700;
+	display: block;
+	color: #fff;
+	font-size: 18px;
+	font-weight: 800;
+	line-height: 1.18;
 }
 
 .painter-offer-bar a {
@@ -287,17 +299,17 @@ Version: 3.0.16
 
 .painter-offer-close {
 	position: absolute;
-	top: -8px;
-	right: -8px;
+	top: 9px;
+	right: 9px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 24px;
-	min-width: 24px;
-	max-width: 24px;
-	height: 24px;
-	min-height: 24px;
-	max-height: 24px;
+	width: 28px;
+	min-width: 28px;
+	max-width: 28px;
+	height: 28px;
+	min-height: 28px;
+	max-height: 28px;
 	padding: 0;
 	border: 0;
 	border-radius: 50%;
@@ -306,7 +318,7 @@ Version: 3.0.16
 	appearance: none;
 	-webkit-appearance: none;
 	box-shadow: none;
-	font-size: 18px;
+	font-size: 24px;
 	line-height: 1;
 	text-shadow: none;
 	cursor: pointer;
