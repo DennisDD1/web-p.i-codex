@@ -246,9 +246,31 @@ add_action( 'wp_body_open', function () {
 	}
 	?>
 	<div class="painter-offer-bar" role="note" aria-label="Current offer">
+		<button class="painter-offer-close" type="button" aria-label="Close offer notice">×</button>
 		<span>Sitewide 30% off</span>
 		<strong>Free shipping over $11.98</strong>
 		<a href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>">Shop motifs</a>
 	</div>
+	<script>
+	(function () {
+		var notice = document.querySelector('.painter-offer-bar');
+		if (!notice) return;
+
+		if (window.sessionStorage && sessionStorage.getItem('painterOfferClosed') === '1') {
+			notice.hidden = true;
+			return;
+		}
+
+		var close = notice.querySelector('.painter-offer-close');
+		if (!close) return;
+
+		close.addEventListener('click', function () {
+			notice.hidden = true;
+			if (window.sessionStorage) {
+				sessionStorage.setItem('painterOfferClosed', '1');
+			}
+		});
+	})();
+	</script>
 	<?php
 } );
