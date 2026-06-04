@@ -189,6 +189,15 @@ add_action( 'wp_footer', function () {
 			});
 		}
 
+		function hideLegacyPromotionSections() {
+			document.querySelectorAll('section').forEach(function (section) {
+				var text = section.textContent || '';
+				if (text.indexOf('30% OFF SITEWIDE') !== -1 && text.indexOf('Latest Promotions') !== -1) {
+					section.classList.add('painter-legacy-promo-hidden');
+				}
+			});
+		}
+
 		document.addEventListener('touchstart', function (event) {
 			var card = event.target.closest('.painter-product-card');
 			if (card) card.classList.add('is-touching-image');
@@ -201,12 +210,17 @@ add_action( 'wp_footer', function () {
 		}, { passive: true });
 
 		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', enhanceCards);
+			document.addEventListener('DOMContentLoaded', function () {
+				enhanceCards();
+				hideLegacyPromotionSections();
+			});
 		} else {
 			enhanceCards();
+			hideLegacyPromotionSections();
 		}
 		window.setTimeout(enhanceCards, 700);
 		window.setTimeout(enhanceCards, 1600);
+		window.setTimeout(hideLegacyPromotionSections, 700);
 	})();
 	</script>
 	<?php
