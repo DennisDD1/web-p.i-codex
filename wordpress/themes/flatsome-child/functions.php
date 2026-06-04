@@ -21,25 +21,25 @@ add_action( 'wp_footer', function () {
 	}
 
 	$product_notes = array(
-		array( 'Crying Woman', '4.86 x 2.84 cm', '1938年斯洛伐克现代主义先驱Galanda生命最后一年所作。时值二战阴云笼罩，他以扭曲线条描绘哭泣女性，空洞眼神与无声尖叫凝缩了时代焦虑与个体哀伤。' ),
-		array( 'Girl hugs a cat', '2.0 x 5.9 cm', 'Van Hoytema（1863-1917）荷兰石版画家，幼年父母双亡。此作描绘女孩拥抱猫咪的温情瞬间，展现新艺术运动对日常亲密场景的诗意捕捉。' ),
-		array( 'Broken Heart', '3.34 x 3.17 cm', '破碎之心符号源于中世纪宗教艺术，19世纪维多利亚时代流行于情人节卡片与哀悼首饰。从圣心传统世俗化而来，成为情感创伤的通用视觉隐喻。' ),
-		array( 'Phases of Mercury', '5.04 x 1.71 cm', 'Agnes Giberne（1845-1939）英国科普作家，1898年在其天文学著作中以插图展示水星盈亏，以生动方式向大众传播科学。' ),
-		array( 'Volcano', '2.23 x 3.96 cm', '1930年Galanda从巴黎游学归来，与Fulla合著私人信件激辩现代艺术方向。此钢笔速写以狂放线条描绘火山喷发，折射现代主义对原始力量的迷恋。' ),
-		array( 'Blad met banenpatroon', '1.74 x 8.22 cm', '荷兰语意为心形条纹图案之页，横跨1750至1900年。心形被化为图案单元，条纹重复展现对秩序与节奏的追求。' ),
-		array( 'Free Curve', '4.22 x 6.4 cm', '1925年康定斯基任教于德绍包豪斯，是其几何抽象高峰。自由曲线向点实践点线面理论，以曲线向点汇聚。' ),
-		array( 'Woman and Flower', '1.86 x 4.91 cm', '1937年Galanda在巴黎和莫斯科世博会获银奖，画风融合民间元素与现代主义。此作将女性与花卉糅为诗意画面。' ),
-		array( 'We Take the Stars', '5.37 x 5.98 cm', '据传出自华盛顿对星条旗的解释：从天堂取星辰，从母国取红色。1776年独立革命之际，此文传播新生国家理想。' ),
-		array( 'Stars from Heaven', '5.37 x 5.98 cm', '据传出自华盛顿对星条旗的解释：从天堂取星辰，从母国取红色。1776年独立革命之际，此文传播新生国家理想。' ),
-		array( 'Angels Care', '4.08 x 3.78 cm', '1931年克利从包豪斯转至杜塞尔多夫，创作守护天使系列。不久纳粹迫其离开德国，天使成为黑暗年代里最后的精神庇护。' ),
-		array( 'Starry Night', '3.10 x 3.11 cm', '1889年梵高在圣雷米精神病院从病房东窗取景创作。旋动的星光与升腾的柏树是内心风暴的外化。' ),
-		array( 'Dream', '3.0 x 3.9 cm', 'painter.ink特邀七十岁书法老师专为纹身题写的「夢」字。以苍劲行书挥毫而就，一横一竖凝聚毕生功力。' ),
-		array( 'Traditional Chinese Calligraphy', '3.0 x 3.9 cm', 'painter.ink特邀七十岁书法老师专为纹身题写的「夢」字。以苍劲行书挥毫而就，一横一竖凝聚毕生功力。' ),
-		array( 'Peace Dove', '4.0 x 3.9 cm', 'Leo Gestel（1881-1941）荷兰现代主义先驱，与蒙德里安齐名。1934-1936年欧洲战云密布，他以书籍插图创作和平鸽。' ),
-		array( 'Peace', '3.24 x 4.5 cm', '1970年越战抗议达高峰，和平鸽被广泛用作反战符号。图像源自毕加索1949年石版画鸽子，后成为全球和平运动的视觉语言。' ),
-		array( 'Composition with Red', '3.7 x 3.66 cm', '1921年蒙德里安在巴黎将绘画推向新造型主义。仅用黑网格与红黄蓝三原色，将万物还原为本质元素。' ),
-		array( 'Sacred Heart', '3.34 x 4.13 cm', '出自1935-1942年美国WPA美国设计索引。圣心图案源自新墨西哥州西班牙殖民教堂，是信仰与民间手工艺交融的见证。' ),
-		array( 'Crown', '3.81 x 2.44 cm', '英国外交官兼诗人Rennell Rodd诗集Feda中的王冠插图。精美雕刻展现维多利亚时代对古典权威与骑士精神的回望。' ),
+		array( 'Crying Woman', '4.86 x 2.84 cm', 'Drawn in 1938, near the end of Mikulas Galanda\'s life. Its fractured lines and hollow gaze hold the anxiety of a Europe moving toward war.' ),
+		array( 'Girl hugs a cat', '2.0 x 5.9 cm', 'Inspired by Theo van Hoytema, the Dutch lithographer known for tender animal scenes. A slim, affectionate motif for quiet placement.' ),
+		array( 'Broken Heart', '3.34 x 3.17 cm', 'A Victorian-era symbol with roots in devotional heart imagery. It turns private hurt into a small, direct visual mark.' ),
+		array( 'Phases of Mercury', '5.04 x 1.71 cm', 'Adapted from an 1898 astronomy illustration by Agnes Giberne, made to bring celestial movement into clear popular science.' ),
+		array( 'Volcano', '2.23 x 3.96 cm', 'A 1930 Galanda-inspired sketch charged with restless energy, reflecting modernism\'s fascination with raw natural force.' ),
+		array( 'Blad met banenpatroon', '1.74 x 8.22 cm', 'A long heart-pattern strip from Dutch decorative sources, turning the heart into rhythm, order, and bracelet-like movement.' ),
+		array( 'Free Curve', '4.22 x 6.4 cm', 'Inspired by Kandinsky\'s 1925 Bauhaus period, where line, point, and curve became a language of pure motion.' ),
+		array( 'Woman and Flower', '1.86 x 4.91 cm', 'A Galanda-inspired vertical figure from the late 1930s, blending folk feeling with modern linework and a quiet floral presence.' ),
+		array( 'We Take the Stars', '5.37 x 5.98 cm', 'A historic celestial phrase tied to early American symbolism: stars from heaven, red from the mother country, and a new ideal taking shape.' ),
+		array( 'Stars from Heaven', '5.37 x 5.98 cm', 'A historic celestial phrase tied to early American symbolism: stars from heaven, red from the mother country, and a new ideal taking shape.' ),
+		array( 'Angels Care', '4.08 x 3.78 cm', 'Inspired by Paul Klee\'s guardian-angel works from 1931, made as a small sign of care before Europe entered darker years.' ),
+		array( 'Starry Night', '3.10 x 3.11 cm', 'Drawn from Van Gogh\'s 1889 night sky at Saint-Remy, where swirling stars and rising cypress turn inner turbulence into light.' ),
+		array( 'Dream', '3.0 x 3.9 cm', 'A custom Chinese calligraphy motif made for painter.ink, using the character for dream in a bold, hand-brushed form.' ),
+		array( 'Traditional Chinese Calligraphy', '3.0 x 3.9 cm', 'A custom Chinese calligraphy motif made for painter.ink, using the character for dream in a bold, hand-brushed form.' ),
+		array( 'Peace Dove', '4.0 x 3.9 cm', 'Inspired by Leo Gestel\'s 1930s modernist linework. A clear dove motif made for a calm, readable placement.' ),
+		array( 'Peace', '3.24 x 4.5 cm', 'A 1970 peace motif shaped by anti-war visual culture, echoing the dove as a global sign of hope and refusal.' ),
+		array( 'Composition with Red', '3.7 x 3.66 cm', 'Inspired by Mondrian\'s 1921 neoplastic work, reducing the world to black structure and primary color.' ),
+		array( 'Sacred Heart', '3.34 x 4.13 cm', 'Based on a WPA Index of American Design devotional graphic, where Spanish colonial church imagery meets folk craft.' ),
+		array( 'Crown', '3.81 x 2.44 cm', 'Adapted from a Victorian-era crown illustration linked to Rennell Rodd, with a small mark of classical authority and refinement.' ),
 	);
 
 	$product_images = array();
@@ -97,6 +97,19 @@ add_action( 'wp_footer', function () {
 			});
 
 			return match ? productImages[match] : '';
+		}
+
+		function cleanStorefrontTitle(titleNode) {
+			if (!titleNode || titleNode.dataset.painterTitleCleaned) return;
+
+			titleNode.textContent = titleNode.textContent
+				.replace(/\s*[\(\uff08][\u3400-\u9fff]+[\)\uff09]/g, '')
+				.replace(/\uff08/g, '(')
+				.replace(/\uff09/g, ')')
+				.replace(/([A-Za-z])\(/g, '$1 (')
+				.replace(/\s+/g, ' ')
+				.trim();
+			titleNode.dataset.painterTitleCleaned = 'true';
 		}
 
 		function isProductArea(node) {
@@ -163,6 +176,7 @@ add_action( 'wp_footer', function () {
 
 				if (row) row.classList.add('painter-product-grid');
 				card.classList.add('painter-product-card');
+				cleanStorefrontTitle(title);
 
 				if (image && imageSet && imageSet.primary && image.src !== imageSet.primary) {
 					image.src = imageSet.primary;
@@ -238,83 +252,3 @@ add_action( 'wp_body_open', function () {
 	</div>
 	<?php
 } );
-
-add_action( 'wp_footer', function () {
-	if ( is_cart() || is_checkout() || is_account_page() ) {
-		return;
-	}
-
-	$reviews = get_comments(
-		array(
-			'status'    => 'approve',
-			'post_type' => 'product',
-			'number'    => 3,
-			'orderby'   => 'comment_date_gmt',
-			'order'     => 'DESC',
-		)
-	);
-
-	$ratings = array();
-	foreach ( $reviews as $review ) {
-		$rating = (int) get_comment_meta( $review->comment_ID, 'rating', true );
-		if ( $rating > 0 ) {
-			$ratings[] = $rating;
-		}
-	}
-	$has_reviews    = ! empty( $reviews );
-	$average_rating = ! empty( $ratings ) ? round( array_sum( $ratings ) / count( $ratings ), 1 ) : '';
-	?>
-	<section class="painter-review-footer" aria-label="Customer reviews and store information">
-		<div class="painter-review-inner">
-			<div class="painter-review-head">
-				<span><?php echo esc_html( $has_reviews ? 'Customer notes' : 'Studio notes' ); ?></span>
-				<h2><?php echo esc_html( $has_reviews ? 'What customers are saying.' : 'Small artworks, made for real skin.' ); ?></h2>
-				<p><?php echo esc_html( $has_reviews ? 'Recent approved product feedback from painter.ink customers.' : 'Plant-based color, soft matte finish, and archive-inspired motifs for travel, styling, photos, and first tries.' ); ?></p>
-			</div>
-			<div class="painter-review-score">
-				<strong><?php echo esc_html( $has_reviews && $average_rating ? $average_rating : 'Matte' ); ?></strong>
-				<span><?php echo esc_html( $has_reviews ? '★★★★★' : 'Plant color' ); ?></span>
-				<small><?php echo esc_html( $has_reviews ? 'Latest approved reviews' : 'Temporary tattoo finish' ); ?></small>
-			</div>
-			<div class="painter-review-grid">
-				<?php if ( $has_reviews ) : ?>
-					<?php foreach ( $reviews as $review ) : ?>
-						<?php $rating = (int) get_comment_meta( $review->comment_ID, 'rating', true ); ?>
-						<article>
-							<span><?php echo esc_html( $rating > 0 ? str_repeat( '★', min( 5, $rating ) ) : 'Customer note' ); ?></span>
-							<p>"<?php echo esc_html( wp_trim_words( wp_strip_all_tags( $review->comment_content ), 24, '...' ) ); ?>"</p>
-							<small><?php echo esc_html( $review->comment_author ? $review->comment_author : 'painter.ink customer' ); ?></small>
-						</article>
-					<?php endforeach; ?>
-				<?php else : ?>
-				<article>
-					<span>Finish</span>
-					<p>Designed to look soft and matte on skin, without a shiny sticker edge.</p>
-					<small>Temporary tattoo detail</small>
-				</article>
-				<article>
-					<span>Motif</span>
-					<p>Each card keeps the artwork size and background story close to the product image.</p>
-					<small>Archive-inspired design</small>
-				</article>
-				<article>
-					<span>Placement</span>
-					<p>Small formats are easy to test on wrist, arm, shoulder, ankle, or collarbone.</p>
-					<small>First placement guide</small>
-				</article>
-				<?php endif; ?>
-			</div>
-			<div class="painter-footer-links">
-				<div>
-					<strong>Painter.ink</strong>
-					<p>Wearable art temporary tattoos with historical motifs and natural fading.</p>
-				</div>
-				<a href="/shipping-policy/">Shipping</a>
-				<a href="/refund-resolution-policy/">Refunds</a>
-				<a href="/faq/">FAQ</a>
-				<a href="/track-order/">Track order</a>
-			</div>
-		</div>
-	</section>
-	<?php
-}, 15 );

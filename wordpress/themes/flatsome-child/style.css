@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.8
+Version: 3.0.9
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -280,136 +280,6 @@ Version: 3.0.8
 	display: none !important;
 }
 
-.painter-review-footer {
-	margin-top: 56px;
-	background: #101111;
-	color: #f4f1ea;
-}
-
-.painter-review-inner {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 54px 24px 34px;
-}
-
-.painter-review-head {
-	display: grid;
-	grid-template-columns: 1fr minmax(220px, 0.6fr);
-	gap: 28px;
-	align-items: end;
-	margin-bottom: 26px;
-}
-
-.painter-review-head span {
-	color: #aebe94;
-	font-size: 13px;
-	font-weight: 700;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-}
-
-.painter-review-head h2 {
-	margin: 7px 0 0;
-	color: #fff;
-	font-size: 36px;
-	line-height: 1.05;
-}
-
-.painter-review-head p {
-	margin: 0;
-	color: #c9c5bd;
-	font-size: 16px;
-	line-height: 1.55;
-}
-
-.painter-review-score {
-	display: flex;
-	align-items: center;
-	gap: 12px;
-	margin-bottom: 24px;
-	padding: 14px 18px;
-	border: 1px solid rgba(255, 255, 255, 0.14);
-	border-radius: 8px;
-	background: rgba(255, 255, 255, 0.05);
-}
-
-.painter-review-score strong {
-	color: #fff;
-	font-size: 30px;
-	line-height: 1;
-}
-
-.painter-review-score span {
-	color: #f5d87b;
-	letter-spacing: 0.08em;
-}
-
-.painter-review-score small {
-	color: #b9b4aa;
-}
-
-.painter-review-grid {
-	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 18px;
-}
-
-.painter-review-grid article {
-	min-height: 170px;
-	padding: 22px;
-	border: 1px solid rgba(255, 255, 255, 0.12);
-	border-radius: 8px;
-	background: #191a1a;
-}
-
-.painter-review-grid article span {
-	color: #f5d87b;
-	font-size: 14px;
-	letter-spacing: 0.08em;
-}
-
-.painter-review-grid article p {
-	margin: 16px 0 22px;
-	color: #f2eee6;
-	font-size: 17px;
-	line-height: 1.5;
-}
-
-.painter-review-grid article small {
-	color: #aebe94;
-	font-weight: 700;
-	letter-spacing: 0.04em;
-}
-
-.painter-footer-links {
-	display: grid;
-	grid-template-columns: minmax(260px, 1fr) repeat(4, auto);
-	gap: 18px;
-	align-items: end;
-	margin-top: 34px;
-	padding-top: 24px;
-	border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.painter-footer-links strong {
-	display: block;
-	margin-bottom: 6px;
-	color: #fff;
-	font-size: 20px;
-}
-
-.painter-footer-links p {
-	max-width: 420px;
-	margin: 0;
-	color: #b9b4aa;
-	line-height: 1.45;
-}
-
-.painter-footer-links a {
-	color: #f4f1ea;
-	font-weight: 700;
-}
-
 .painter-product-grid {
 	display: flex !important;
 	flex-wrap: wrap;
@@ -665,46 +535,6 @@ Version: 3.0.8
 .woocommerce-shop .painter-product-note small,
 .archive.woocommerce .painter-product-note small {
 	font-size: 12px;
-}
-
-.painter-review-inner {
-	padding: 38px 16px 26px;
-}
-
-.painter-review-head {
-	display: block;
-	margin-bottom: 20px;
-}
-
-.painter-review-head h2 {
-	font-size: 28px;
-}
-
-.painter-review-head p {
-	margin-top: 12px;
-	font-size: 15px;
-}
-
-.painter-review-score {
-	align-items: baseline;
-	flex-wrap: wrap;
-}
-
-.painter-review-grid {
-	grid-template-columns: 1fr;
-}
-
-.painter-review-grid article {
-	min-height: 0;
-}
-
-.painter-footer-links {
-	grid-template-columns: 1fr 1fr;
-	align-items: start;
-}
-
-.painter-footer-links div {
-	grid-column: 1 / -1;
 }
 
 }
