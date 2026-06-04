@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.9
+Version: 3.0.10
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -245,9 +245,11 @@ Version: 3.0.9
 }
 
 .painter-offer-bar {
-	position: sticky;
+	position: fixed;
 	top: 0;
-	z-index: 39;
+	left: 0;
+	right: 0;
+	z-index: 100000;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -257,6 +259,14 @@ Version: 3.0.9
 	color: #f8f5ee;
 	font-size: 13px;
 	letter-spacing: 0.02em;
+}
+
+body {
+	padding-top: 38px;
+}
+
+body.admin-bar .painter-offer-bar {
+	top: 32px;
 }
 
 .painter-offer-bar span {
@@ -277,6 +287,15 @@ Version: 3.0.9
 }
 
 .painter-legacy-promo-hidden {
+	display: none !important;
+}
+
+.painter-product-card .badge-container,
+.painter-product-card .badge,
+.painter-product-card .onsale,
+.painter-product-grid .badge-container,
+.painter-product-grid .badge,
+.painter-product-grid .onsale {
 	display: none !important;
 }
 
@@ -568,6 +587,24 @@ Version: 3.0.9
 	.woocommerce-shop .painter-product-grid.flickity-enabled .flickity-slider,
 	.archive.woocommerce .painter-product-grid.flickity-enabled .flickity-slider {
 		grid-template-columns: 1fr;
+	}
+}
+
+@media only screen and (max-width: 48em) {
+	body {
+		padding-top: 50px;
+	}
+
+	body.admin-bar .painter-offer-bar {
+		top: 46px;
+	}
+
+	.painter-offer-bar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		z-index: 100000;
 	}
 }
 
