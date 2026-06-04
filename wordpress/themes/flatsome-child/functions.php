@@ -99,6 +99,18 @@ add_action( 'wp_footer', function () {
 			return match ? productImages[match] : '';
 		}
 
+		function formatDimensions(size) {
+			var match = (size || '').match(/(\d+(?:\.\d+)?)\s*x\s*(\d+(?:\.\d+)?)\s*cm/i);
+			if (!match) return size;
+
+			var widthCm = parseFloat(match[1]);
+			var heightCm = parseFloat(match[2]);
+			var widthIn = (widthCm / 2.54).toFixed(2);
+			var heightIn = (heightCm / 2.54).toFixed(2);
+
+			return match[1] + ' &times; ' + match[2] + ' cm | ' + widthIn + ' &times; ' + heightIn + ' in';
+		}
+
 		function cleanStorefrontTitle(titleNode) {
 			if (!titleNode || titleNode.dataset.painterTitleCleaned) return;
 
@@ -198,7 +210,7 @@ add_action( 'wp_footer', function () {
 
 				var meta = document.createElement('div');
 				meta.className = 'painter-product-note';
-				meta.innerHTML = '<small>' + note[1] + '</small><em>' + note[2] + '</em>';
+				meta.innerHTML = '<small>' + formatDimensions(note[1]) + '</small><em>' + note[2] + '</em>';
 				body.appendChild(meta);
 			});
 		}
@@ -257,15 +269,17 @@ add_action( 'wp_body_open', function () {
 		if (!notice) return;
 
 		if (window.sessionStorage && sessionStorage.getItem('painterOfferClosed') === '1') {
-			notice.hidden = true;
+			notice.classList.add('is-hidden');
 			return;
 		}
 
 		var close = notice.querySelector('.painter-offer-close');
 		if (!close) return;
 
-		close.addEventListener('click', function () {
-			notice.hidden = true;
+		close.addEventListener('click', function (event) {
+			event.preventDefault();
+			event.stopPropagation();
+			notice.classList.add('is-hidden');
 			if (window.sessionStorage) {
 				sessionStorage.setItem('painterOfferClosed', '1');
 			}

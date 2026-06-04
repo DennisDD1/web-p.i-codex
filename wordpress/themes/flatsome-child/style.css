@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.13
+Version: 3.0.14
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -259,13 +259,17 @@ Version: 3.0.13
 	border-radius: 8px;
 	background: #00bf63;
 	box-shadow: 0 16px 36px rgba(0, 80, 42, 0.24);
-	color: #062014;
+	color: #fff;
 	font-size: 13px;
 	letter-spacing: 0.02em;
 }
 
+.painter-offer-bar.is-hidden {
+	display: none !important;
+}
+
 .painter-offer-bar span {
-	color: #062014;
+	color: #fff;
 	font-weight: 700;
 	text-transform: uppercase;
 }
@@ -276,8 +280,8 @@ Version: 3.0.13
 }
 
 .painter-offer-bar a {
-	color: #062014;
-	border-bottom: 1px solid rgba(6, 32, 20, 0.55);
+	color: #fff;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.72);
 	line-height: 1.1;
 }
 
@@ -290,8 +294,8 @@ Version: 3.0.13
 	padding: 0;
 	border: 0;
 	border-radius: 999px;
-	background: rgba(6, 32, 20, 0.14);
-	color: #062014;
+	background: rgba(255, 255, 255, 0.22);
+	color: #fff;
 	font-size: 18px;
 	line-height: 20px;
 	text-align: center;
@@ -300,7 +304,7 @@ Version: 3.0.13
 
 .painter-offer-close:hover,
 .painter-offer-close:focus {
-	background: rgba(6, 32, 20, 0.24);
+	background: rgba(255, 255, 255, 0.34);
 	outline: none;
 }
 
