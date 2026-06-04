@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.17
+Version: 3.0.18
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -246,10 +246,13 @@ Version: 3.0.17
 
 .painter-offer-bar {
 	position: fixed;
+	top: auto !important;
+	left: auto !important;
 	right: 18px;
 	bottom: 18px;
 	z-index: 100000;
 	display: flex;
+	width: auto !important;
 	flex-direction: column;
 	align-items: flex-start;
 	gap: 8px;
@@ -292,6 +295,7 @@ Version: 3.0.17
 }
 
 .painter-offer-bar a {
+	display: none !important;
 	color: #fff;
 	border-bottom: 1px solid rgba(255, 255, 255, 0.72);
 	line-height: 1.1;
@@ -438,6 +442,15 @@ Version: 3.0.17
 	text-transform: none;
 }
 
+.badge-container,
+.badge,
+.onsale,
+.product-gallery .badge-container,
+.product-gallery .badge,
+.product-gallery .onsale,
+.related-products-wrapper .badge-container,
+.related-products-wrapper .badge,
+.related-products-wrapper .onsale,
 .painter-product-card .badge-container,
 .painter-product-card .badge,
 .painter-product-card .onsale,
@@ -591,11 +604,13 @@ Version: 3.0.17
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
 
 .painter-offer-bar {
-	left: 14px;
+	top: auto !important;
+	left: 14px !important;
 	right: 14px;
 	bottom: 14px;
+	width: auto !important;
 	max-width: none;
-	padding: 12px 14px;
+	padding: 14px 52px 14px 16px;
 }
 
 .painter-offer-bar span,
@@ -741,8 +756,8 @@ Version: 3.0.17
 @media only screen and (max-width: 48em) {
 	.painter-offer-bar {
 		position: fixed;
-		top: auto;
-		left: 14px;
+		top: auto !important;
+		left: 14px !important;
 		right: 14px;
 		bottom: 14px;
 		z-index: 100000;
