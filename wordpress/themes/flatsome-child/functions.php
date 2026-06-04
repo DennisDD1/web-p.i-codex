@@ -267,10 +267,7 @@ add_action( 'wp_body_open', function () {
 		var notice = document.querySelector('.painter-offer-bar');
 		if (!notice) return;
 
-		if (window.sessionStorage && sessionStorage.getItem('painterOfferClosedV2') === '1') {
-			notice.classList.add('is-hidden');
-			return;
-		}
+		var reopenDelay = 60000;
 
 		var close = notice.querySelector('.painter-offer-close');
 		if (!close) return;
@@ -279,9 +276,9 @@ add_action( 'wp_body_open', function () {
 			event.preventDefault();
 			event.stopPropagation();
 			notice.classList.add('is-hidden');
-			if (window.sessionStorage) {
-				sessionStorage.setItem('painterOfferClosedV2', '1');
-			}
+			window.setTimeout(function () {
+				notice.classList.remove('is-hidden');
+			}, reopenDelay);
 		});
 	})();
 	</script>
