@@ -3,14 +3,212 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0
+Version: 3.0.3
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
 
+.home .painter-product-grid {
+	display: grid !important;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 24px;
+	align-items: start;
+	margin-left: auto !important;
+	margin-right: auto !important;
+	max-width: 1280px;
+}
+
+.home .painter-product-grid::before,
+.home .painter-product-grid::after {
+	display: none !important;
+}
+
+.home .painter-product-grid > .col {
+	flex: none !important;
+	max-width: none !important;
+	width: auto !important;
+	padding: 0 !important;
+}
+
+.home .painter-product-grid .col-inner {
+	height: 100%;
+}
+
+.home .painter-product-grid .product-small,
+.home .painter-product-grid .box {
+	display: block !important;
+	width: 100% !important;
+	max-width: none !important;
+	min-width: 0 !important;
+}
+
+.home .painter-product-card {
+	overflow: hidden;
+	height: 100%;
+	border: 1px solid rgba(42, 48, 45, 0.14);
+	border-radius: 8px;
+	background: #fff;
+	box-shadow: 0 12px 30px rgba(20, 24, 22, 0.08);
+}
+
+.home .painter-product-card .box-image {
+	overflow: hidden;
+	aspect-ratio: 1 / 1.08;
+	background: #f4f5f1;
+}
+
+.home .painter-product-card .box-image > div,
+.home .painter-product-card .box-image a {
+	display: block;
+	height: 100%;
+}
+
+.home .painter-product-card .box-image img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: contain;
+	padding: 18px;
+	background: #f4f5f1;
+}
+
+.home .painter-product-card .box-text {
+	padding: 18px 18px 20px !important;
+	text-align: left !important;
+}
+
+.home .painter-product-card .product-title {
+	margin: 0 0 7px;
+	font-size: 18px;
+	line-height: 1.22;
+	font-weight: 400;
+}
+
+.home .painter-product-card .product-title a {
+	color: #344760;
+}
+
+.home .painter-product-card .price-wrapper {
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid rgba(40, 40, 40, 0.14);
+}
+
+.home .painter-product-card .price,
+.home .painter-product-card .price .amount {
+	color: #111;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.home .painter-product-note {
+	display: grid;
+	gap: 8px;
+	color: #66615c;
+	font-size: 15px;
+	line-height: 1.35;
+}
+
+.home .painter-product-note small {
+	color: #83936f;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 0.06em;
+	line-height: 1.25;
+	text-transform: uppercase;
+}
+
+.home .painter-product-note em {
+	color: #5f5b56;
+	font-style: normal;
+}
+
+.home .painter-product-card .image-tools,
+.home .painter-product-card .quick-view {
+	display: none !important;
+}
+
+.home .painter-product-grid.flickity-enabled {
+	display: block !important;
+}
+
+.home .painter-product-grid.flickity-enabled .flickity-viewport {
+	display: block !important;
+	overflow: visible !important;
+	height: auto !important;
+}
+
+.home .painter-product-grid.flickity-enabled .flickity-slider {
+	position: static !important;
+	display: grid !important;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 24px;
+	width: 100% !important;
+	transform: none !important;
+}
+
+.home .painter-product-grid.flickity-enabled .flickity-slider > .col {
+	position: static !important;
+	left: auto !important;
+	width: auto !important;
+	max-width: none !important;
+	padding: 0 !important;
+	transform: none !important;
+}
+
+.home .painter-product-grid.flickity-enabled .flickity-button,
+.home .painter-product-grid.flickity-enabled .flickity-page-dots {
+	display: none !important;
+}
 
 @media only screen and (max-width: 48em) {
 /*************** ADD MOBILE ONLY CSS HERE  ***************/
 
+.home .painter-product-grid {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 14px;
+	padding-left: 14px;
+	padding-right: 14px;
+}
 
+.home .painter-product-grid.flickity-enabled .flickity-slider {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 14px;
+}
+
+.home .painter-product-card .box-image img {
+	padding: 12px;
+}
+
+.home .painter-product-card .box-text {
+	padding: 14px !important;
+}
+
+.home .painter-product-card .product-title {
+	font-size: 15px;
+}
+
+.home .painter-product-card .price,
+.home .painter-product-card .price .amount {
+	font-size: 16px;
+}
+
+.home .painter-product-note {
+	font-size: 13px;
+}
+
+.home .painter-product-note small {
+	font-size: 12px;
+}
+
+}
+
+@media only screen and (max-width: 380px) {
+	.home .painter-product-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.home .painter-product-grid.flickity-enabled .flickity-slider {
+		grid-template-columns: 1fr;
+	}
 }

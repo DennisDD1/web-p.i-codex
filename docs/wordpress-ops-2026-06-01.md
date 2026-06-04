@@ -110,3 +110,45 @@ sudo cp /home/admin/painter-backups/20260602T020458Z/functions.php.before-featur
 sudo tar -xzf /home/admin/painter-backups/20260602T020458Z/wp-content-uploads-public-risk-files.tar.gz -C /var/www/html
 wp db import /home/admin/painter-backups/20260602T020458Z/database.sql.gz --allow-root
 ```
+
+## Homepage product grid update on 2026-06-04
+
+Rollback backup created before changes:
+
+- `/home/admin/painter-backups/20260604T050333Z`
+
+Backup contents:
+
+- `database.sql.gz`
+- `flatsome-child.tar.gz`
+- `functions.php.before-product-grid`
+- `style.css.before-product-grid`
+- `home-content.txt`
+- `page_on_front.txt`
+- `products.csv`
+
+Changes:
+
+- Changed the homepage product area from the Flatsome slider look into a 4-column product card grid on desktop.
+- Kept a 2-column layout on normal mobile screens and 1 column on very narrow screens.
+- Added product card notes on the homepage: source/context, size, and short styling note.
+- Replaced small product thumbnails in the homepage cards with larger product images when available.
+- Kept WooCommerce prices, sale prices, product links, and cart behavior unchanged.
+- Bumped child theme CSS version to `3.0.3` so browsers request the new stylesheet.
+
+Verification:
+
+- Desktop screenshot check: 17 product cards, 17 notes, 4 columns, each card about 277px wide.
+- Mobile screenshot check: 17 product cards, 17 notes, 2 columns, each card about 174px wide.
+- Verified high-resolution image URLs such as `*-800x800.png` in the rendered homepage cards.
+- Source cache cleared with `wp fastest-cache clear all --allow-root`.
+- Cloudflare API connector could read the zone but could not purge cache; the normal homepage may keep old cached HTML until Cloudflare expires it.
+
+Rollback examples:
+
+```bash
+cd /var/www/html
+sudo cp /home/admin/painter-backups/20260604T050333Z/functions.php.before-product-grid wp-content/themes/flatsome-child/functions.php
+sudo cp /home/admin/painter-backups/20260604T050333Z/style.css.before-product-grid wp-content/themes/flatsome-child/style.css
+wp fastest-cache clear all --allow-root
+```
