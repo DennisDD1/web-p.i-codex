@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.26
+Version: 3.0.27
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -35,7 +35,7 @@ Version: 3.0.26
 	height: 100%;
 	min-height: min(820px, calc(100vh - 70px));
 	object-fit: cover;
-	object-position: center top;
+	object-position: 54% top;
 }
 
 .painter-home-hero__panel {
@@ -149,12 +149,12 @@ Version: 3.0.26
 }
 
 .painter-home-trust span {
-	padding: 20px 16px;
+	padding: 11px 10px;
 	border-right: 1px solid rgba(17, 17, 17, 0.1);
 	text-align: center;
-	font-size: 13px;
+	font-size: 11px;
 	font-weight: 800;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.08em;
 	text-transform: uppercase;
 }
 
@@ -164,11 +164,11 @@ Version: 3.0.26
 
 .painter-home-stories {
 	display: grid;
-	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 24px;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	gap: 18px;
 	max-width: 1380px;
 	margin: 0 auto;
-	padding: 72px 28px;
+	padding: 60px 24px;
 }
 
 .painter-home-stories article {
@@ -183,7 +183,7 @@ Version: 3.0.26
 }
 
 .painter-home-stories article > div {
-	padding: 24px 24px 28px;
+	padding: 20px 18px 24px;
 }
 
 .painter-home-stories span,
@@ -198,14 +198,14 @@ Version: 3.0.26
 }
 
 .painter-home-stories h2 {
-	font-size: clamp(32px, 3.4vw, 52px);
+	font-size: clamp(28px, 2.6vw, 42px);
 	line-height: 0.98;
 }
 
 .painter-home-stories p {
 	margin: 16px 0 0;
 	color: #333;
-	font-size: 17px;
+	font-size: 15px;
 	line-height: 1.45;
 }
 
@@ -233,7 +233,7 @@ Version: 3.0.26
 	}
 
 	.painter-home-hero img {
-		object-position: 82% top;
+		object-position: 72% top;
 	}
 
 	.painter-home-hero__panel {
@@ -267,18 +267,48 @@ Version: 3.0.26
 		gap: 12px;
 	}
 
-	.painter-home-trust,
+	.painter-home-trust {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
 	.painter-home-stories {
-		grid-template-columns: 1fr;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 12px;
 	}
 
 	.painter-home-trust span {
-		border-right: 0;
+		padding: 9px 6px;
+		border-right: 1px solid rgba(17, 17, 17, 0.1);
 		border-bottom: 1px solid rgba(17, 17, 17, 0.1);
+		font-size: 10px;
+		letter-spacing: 0.06em;
+	}
+
+	.painter-home-trust span:nth-child(even) {
+		border-right: 0;
 	}
 
 	.painter-home-stories {
-		padding: 38px 14px;
+		padding: 34px 12px;
+	}
+
+	.painter-home-stories article > div {
+		padding: 14px 12px 16px;
+	}
+
+	.painter-home-stories span,
+	.painter-home-section-title span {
+		margin-bottom: 8px;
+		font-size: 10px;
+	}
+
+	.painter-home-stories h2 {
+		font-size: 24px;
+	}
+
+	.painter-home-stories p {
+		margin-top: 10px;
+		font-size: 13px;
 	}
 
 	.painter-home-products {
