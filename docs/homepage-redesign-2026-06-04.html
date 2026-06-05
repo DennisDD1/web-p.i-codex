@@ -1,9 +1,9 @@
 <!-- painter.ink homepage redesign, deployed to WordPress page ID 103 -->
 <div class="painter-home-redesign">
-	<section class="painter-home-hero" aria-label="Wearable Art Temporary Tattoos">
+	<section class="painter-home-hero painter-home-hero--shoulder" aria-label="Wearable Art Temporary Tattoos">
 		<picture>
-			<source media="(max-width: 767px)" srcset="https://painter.ink/wp-content/uploads/2026/06/01-art-worth-wearing-redhair-拷贝.jpg">
-			<img src="https://painter.ink/wp-content/uploads/2026/06/01-art-worth-wearing-redhair-拷贝.jpg" alt="Model wearing painter.ink classical art temporary tattoo" loading="eager">
+			<source media="(max-width: 767px)" srcset="https://painter.ink/wp-content/uploads/2026/06/painter-home-hero.webp">
+			<img src="https://painter.ink/wp-content/uploads/2026/06/painter-home-hero.webp" alt="Close-up skin and shoulder wearing painter.ink temporary tattoo" loading="eager">
 		</picture>
 		<div class="painter-home-hero__panel">
 			<div class="painter-home-mark">painter.ink</div>
@@ -15,13 +15,6 @@
 				<span>30% off sitewide · Free shipping over $11.98 · 24-48h reveal</span>
 			</div>
 		</div>
-	</section>
-
-	<section class="painter-home-trust" aria-label="painter.ink benefits">
-		<span>Plant-based ink</span>
-		<span>Realistic finish</span>
-		<span>Public-domain art</span>
-		<span>Ships worldwide</span>
 	</section>
 
 	<section class="painter-home-stories" aria-label="Wearable art stories">
@@ -67,3 +60,11 @@
 		[products limit="-1" columns="4" orderby="date" order="DESC" visibility="visible"]
 	</section>
 </div>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+	document.querySelectorAll('a[href*="hi@painter.ink"], a.email[data-label="E-mail"], a[aria-label="Send us an email"]').forEach(function (link) {
+		link.setAttribute('href', 'mailto:hi@painter.ink');
+		link.removeAttribute('target');
+	});
+});
+</script>

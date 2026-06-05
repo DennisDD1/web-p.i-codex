@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.27
+Version: 3.0.28
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -36,6 +36,10 @@ Version: 3.0.27
 	min-height: min(820px, calc(100vh - 70px));
 	object-fit: cover;
 	object-position: 54% top;
+}
+
+.painter-home-hero--shoulder img {
+	object-position: center center;
 }
 
 .painter-home-hero__panel {
@@ -73,8 +77,8 @@ Version: 3.0.27
 .painter-home-stories h2,
 .painter-home-section-title h2 {
 	margin: 0;
-	font-family: Georgia, "Times New Roman", serif;
-	font-weight: 400;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 800;
 	letter-spacing: 0;
 }
 
@@ -168,7 +172,7 @@ Version: 3.0.27
 	gap: 18px;
 	max-width: 1380px;
 	margin: 0 auto;
-	padding: 60px 24px;
+	padding: 46px 24px 56px;
 }
 
 .painter-home-stories article {
@@ -198,15 +202,16 @@ Version: 3.0.27
 }
 
 .painter-home-stories h2 {
-	font-size: clamp(28px, 2.6vw, 42px);
-	line-height: 0.98;
+	font-size: clamp(20px, 1.7vw, 28px);
+	line-height: 1.08;
+	text-transform: uppercase;
 }
 
 .painter-home-stories p {
-	margin: 16px 0 0;
+	margin: 12px 0 0;
 	color: #333;
-	font-size: 15px;
-	line-height: 1.45;
+	font-size: 14px;
+	line-height: 1.42;
 }
 
 .painter-home-products {
@@ -221,8 +226,9 @@ Version: 3.0.27
 }
 
 .painter-home-section-title h2 {
-	font-size: clamp(34px, 4.4vw, 64px);
-	line-height: 0.98;
+	font-size: clamp(24px, 2.6vw, 36px);
+	line-height: 1.08;
+	text-transform: uppercase;
 }
 
 @media (max-width: 849px) {
@@ -233,7 +239,11 @@ Version: 3.0.27
 	}
 
 	.painter-home-hero img {
-		object-position: 72% top;
+		object-position: 50% center;
+	}
+
+	.painter-home-hero--shoulder img {
+		object-position: 48% center;
 	}
 
 	.painter-home-hero__panel {
@@ -289,7 +299,7 @@ Version: 3.0.27
 	}
 
 	.painter-home-stories {
-		padding: 34px 12px;
+		padding: 28px 12px 38px;
 	}
 
 	.painter-home-stories article > div {
@@ -303,7 +313,7 @@ Version: 3.0.27
 	}
 
 	.painter-home-stories h2 {
-		font-size: 24px;
+		font-size: 17px;
 	}
 
 	.painter-home-stories p {
