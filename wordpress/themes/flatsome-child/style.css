@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.30
+Version: 3.0.31
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -197,7 +197,7 @@ Version: 3.0.30
 	object-fit: cover;
 }
 
-.painter-home-stories article > div {
+.painter-home-story-link > div {
 	padding: 20px 18px 24px;
 }
 
@@ -313,7 +313,7 @@ Version: 3.0.30
 		padding: 28px 12px 38px;
 	}
 
-	.painter-home-stories article > div {
+	.painter-home-story-link > div {
 		padding: 14px 12px 16px;
 	}
 
