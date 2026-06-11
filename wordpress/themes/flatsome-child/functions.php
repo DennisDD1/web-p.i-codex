@@ -318,23 +318,69 @@ add_action( 'wp_footer', function () {
 			});
 		}
 
+		function fixPainterSocialLinks() {
+			document.querySelectorAll('.header-social-icons a[data-label], .social-icons.follow-icons a[data-label]').forEach(function (link) {
+				var href = link.getAttribute('href') || link.dataset.painterHref || '';
+				var destination = isPainterEmailLink(link) ? painterEmail : href;
+				if (!destination || destination.indexOf('javascript:') === 0) return;
+
+				link.dataset.painterHref = destination;
+				link.removeAttribute('href');
+				link.removeAttribute('target');
+				link.setAttribute('role', 'link');
+				link.setAttribute('tabindex', '0');
+			});
+		}
+
+		function openPainterSocialLink(link) {
+			var destination = link ? link.dataset.painterHref : '';
+			if (!destination) return;
+
+			if (destination.indexOf('mailto:') === 0) {
+				window.location.href = destination;
+				return;
+			}
+
+			window.open(destination, '_blank', 'noopener');
+		}
+
 		document.addEventListener('click', function (event) {
 			var link = event.target.closest('a');
-			if (!isPainterEmailLink(link)) return;
+			if (!link || (!isPainterEmailLink(link) && !link.dataset.painterHref)) return;
 
 			event.preventDefault();
 			event.stopPropagation();
-			window.location.href = painterEmail;
+			openPainterSocialLink(link);
 		}, true);
 
+		document.addEventListener('keydown', function (event) {
+			if (event.key !== 'Enter' && event.key !== ' ') return;
+
+			var link = event.target.closest('a[data-painter-href]');
+			if (!link) return;
+
+			event.preventDefault();
+			openPainterSocialLink(link);
+		});
+
 		if (document.readyState === 'loading') {
-			document.addEventListener('DOMContentLoaded', fixPainterEmailLinks);
+			document.addEventListener('DOMContentLoaded', function () {
+				fixPainterEmailLinks();
+				fixPainterSocialLinks();
+			});
 		} else {
 			fixPainterEmailLinks();
+			fixPainterSocialLinks();
 		}
 
-		window.setTimeout(fixPainterEmailLinks, 800);
-		window.setTimeout(fixPainterEmailLinks, 2000);
+		window.setTimeout(function () {
+			fixPainterEmailLinks();
+			fixPainterSocialLinks();
+		}, 800);
+		window.setTimeout(function () {
+			fixPainterEmailLinks();
+			fixPainterSocialLinks();
+		}, 2000);
 	})();
 	</script>
 	<?php
