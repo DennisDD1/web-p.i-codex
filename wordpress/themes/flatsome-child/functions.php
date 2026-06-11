@@ -284,3 +284,58 @@ add_action( 'wp_body_open', function () {
 	</script>
 	<?php
 } );
+
+add_action( 'wp_footer', function () {
+	?>
+	<script>
+	(function () {
+		var painterAddress = 'hi' + '@' + 'painter.ink';
+		var painterEmail = 'mailto:' + painterAddress;
+
+		function isPainterEmailLink(link) {
+			if (!link) return false;
+			var href = link.getAttribute('href') || '';
+			var label = link.getAttribute('data-label') || '';
+			var aria = link.getAttribute('aria-label') || '';
+			var title = link.getAttribute('title') || '';
+
+			return link.classList.contains('email')
+				|| label.toLowerCase() === 'e-mail'
+				|| aria.toLowerCase().indexOf('email') !== -1
+				|| title.toLowerCase().indexOf('email') !== -1
+				|| href.indexOf('/cdn-cgi/l/email-protection') !== -1
+				|| href.indexOf(painterAddress) !== -1;
+		}
+
+		function fixPainterEmailLinks() {
+			document.querySelectorAll('a').forEach(function (link) {
+				if (!isPainterEmailLink(link)) return;
+
+				link.setAttribute('href', painterEmail);
+				link.removeAttribute('target');
+				link.setAttribute('aria-label', 'Send us an email');
+				link.setAttribute('title', 'Send us an email');
+			});
+		}
+
+		document.addEventListener('click', function (event) {
+			var link = event.target.closest('a');
+			if (!isPainterEmailLink(link)) return;
+
+			event.preventDefault();
+			event.stopPropagation();
+			window.location.href = painterEmail;
+		}, true);
+
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', fixPainterEmailLinks);
+		} else {
+			fixPainterEmailLinks();
+		}
+
+		window.setTimeout(fixPainterEmailLinks, 800);
+		window.setTimeout(fixPainterEmailLinks, 2000);
+	})();
+	</script>
+	<?php
+}, 100 );
