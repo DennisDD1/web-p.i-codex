@@ -7,13 +7,17 @@
 	var stage = root.querySelector('[data-archive-viewport]');
 	var scenes = Array.prototype.slice.call(root.querySelectorAll('[data-scene]'));
 	var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-scene-target]'));
+	var viewButtons = Array.prototype.slice.call(root.querySelectorAll('[data-view-mode]'));
+	var gridView = root.querySelector('[data-grid-view]');
+	var rail = root.querySelector('[data-coverflow]');
 	var caption = root.querySelector('[data-archive-caption]');
 	var captionCopy = root.querySelector('[data-caption-copy]');
 	var captionFields = {
-		number: root.querySelector('[data-caption-number]'),
+		sku: root.querySelector('[data-caption-sku]'),
 		kicker: root.querySelector('[data-caption-kicker]'),
 		title: root.querySelector('[data-caption-title]'),
 		story: root.querySelector('[data-caption-story]'),
+		size: root.querySelector('[data-caption-size]'),
 		year: root.querySelector('[data-caption-year]')
 	};
 	var menu = root.querySelector('.painter-archive__menu');
@@ -28,14 +32,16 @@
 	var wheelReleaseTimer = 0;
 	var wheelReleasePending = false;
 	var touchStart = 0;
+	var viewMode = 'player';
 
 	function sceneData(index) {
 		var scene = scenes[index];
 		return {
-			number: String(index + 1).padStart(2, '0'),
+			sku: scene.getAttribute('data-scene-sku') || '',
 			kicker: scene.getAttribute('data-scene-kicker') || '',
 			title: scene.getAttribute('data-scene-title') || '',
 			story: scene.getAttribute('data-scene-story') || '',
+			size: scene.getAttribute('data-scene-size') || '',
 			year: scene.getAttribute('data-scene-year') || '',
 			accent: scene.getAttribute('data-scene-accent') || '#111'
 		};
@@ -47,6 +53,16 @@
 			button.classList.toggle('is-active', selected);
 			button.setAttribute('aria-current', selected ? 'true' : 'false');
 		});
+		if (buttons[index] && rail) {
+			var horizontal = window.getComputedStyle(rail).flexDirection === 'row';
+			var scrollOptions = { behavior: reducedMotion ? 'auto' : 'smooth' };
+			if (horizontal) {
+				scrollOptions.left = Math.max(0, buttons[index].offsetLeft - (rail.clientWidth - buttons[index].offsetWidth) / 2);
+			} else {
+				scrollOptions.top = Math.max(0, buttons[index].offsetTop - (rail.clientHeight - buttons[index].offsetHeight) / 2);
+			}
+			rail.scrollTo(scrollOptions);
+		}
 	}
 
 	function updateCaption(index) {
@@ -55,10 +71,11 @@
 		captionCopy.classList.add('is-wiping');
 
 		window.setTimeout(function () {
-			captionFields.number.textContent = data.number;
+			captionFields.sku.textContent = data.sku;
 			captionFields.kicker.textContent = data.kicker;
 			captionFields.title.textContent = data.title;
 			captionFields.story.textContent = data.story;
+			captionFields.size.textContent = data.size;
 			captionFields.year.textContent = data.year;
 			caption.style.setProperty('--caption-accent', data.accent);
 			captionCopy.classList.remove('is-wiping');
@@ -94,7 +111,7 @@
 
 	function changeScene(target) {
 		target = Math.max(0, Math.min(target, scenes.length - 1));
-		if (transitioning || target === active) return;
+		if (transitioning || target === active) return false;
 
 		var current = active;
 		var direction = target > current ? 1 : -1;
@@ -112,24 +129,29 @@
 		window.setTimeout(function () {
 			finishVisualTransition(target);
 		}, visualDuration);
+		return true;
 	}
 
 	function registerWheelGesture(event) {
+		if (viewMode !== 'player') return;
 		event.preventDefault();
 		wheelReleasePending = false;
 		window.clearTimeout(wheelReleaseTimer);
 		wheelReleaseTimer = window.setTimeout(releaseWheelGesture, 220);
 
 		if (wheelGestureActive || transitioning || Math.abs(event.deltaY) < 12) return;
-		wheelGestureActive = true;
-		changeScene(active + (event.deltaY > 0 ? 1 : -1));
+		if (changeScene(active + (event.deltaY > 0 ? 1 : -1))) {
+			wheelGestureActive = true;
+		}
 	}
 
-	stage.addEventListener('wheel', registerWheelGesture, { passive: false });
-	stage.addEventListener('touchstart', function (event) {
+	root.addEventListener('wheel', registerWheelGesture, { passive: false });
+	root.addEventListener('touchstart', function (event) {
+		if (viewMode !== 'player') return;
 		touchStart = event.touches[0].clientY;
 	}, { passive: true });
-	stage.addEventListener('touchend', function (event) {
+	root.addEventListener('touchend', function (event) {
+		if (viewMode !== 'player') return;
 		var distance = touchStart - event.changedTouches[0].clientY;
 		if (!transitioning && Math.abs(distance) > 45) changeScene(active + (distance > 0 ? 1 : -1));
 	}, { passive: true });
@@ -137,6 +159,28 @@
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
 			if (!transitioning) changeScene(Number(button.getAttribute('data-scene-target')));
+		});
+	});
+
+	function setViewMode(mode) {
+		viewMode = mode === 'grid' ? 'grid' : 'player';
+		root.setAttribute('data-current-view', viewMode);
+		document.body.classList.toggle('painter-archive-grid-mode', viewMode === 'grid');
+		gridView.setAttribute('aria-hidden', viewMode === 'grid' ? 'false' : 'true');
+		viewButtons.forEach(function (button) {
+			var selected = button.getAttribute('data-view-mode') === viewMode;
+			button.classList.toggle('is-active', selected);
+			button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+		});
+		wheelGestureActive = false;
+		wheelReleasePending = false;
+		window.clearTimeout(wheelReleaseTimer);
+		if (viewMode === 'grid') window.scrollTo(0, 0);
+	}
+
+	viewButtons.forEach(function (button) {
+		button.addEventListener('click', function () {
+			setViewMode(button.getAttribute('data-view-mode'));
 		});
 	});
 
@@ -156,4 +200,5 @@
 
 	normalizeScenes();
 	updateButtons(0);
+	setViewMode('player');
 }());

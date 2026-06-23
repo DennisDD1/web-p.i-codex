@@ -22,17 +22,15 @@ add_filter(
 );
 add_action( 'wp_head', static function () { echo '<meta name="robots" content="noindex, nofollow">' . "\n"; }, 1 );
 
-$upload = trailingslashit( wp_upload_dir()['baseurl'] ) . '2026/03/';
-$scenes = array(
-	array( 'title' => 'Broken Heart', 'year' => '19th century', 'kicker' => 'Human concern / personal torment', 'story' => 'A direct emblem of fracture, restored from historic devotional imagery and made small enough to carry.', 'art' => $upload . 'ch1.png', 'wear' => $upload . rawurlencode( '14-14ku-拷贝11.webp' ), 'product' => home_url( '/product/injured-heart-heartbreak-emblem-emotional-fracture-graphic/' ), 'accent' => '#f04a34' ),
-	array( 'title' => 'Volcano', 'year' => '1930', 'kicker' => 'Raw line / quiet force', 'story' => 'Mikulas Galanda reduced a landscape into pressure and movement. On skin, the same line becomes intimate.', 'art' => $upload . 'flower1.png', 'wear' => $upload . rawurlencode( '14-14ku-拷贝22.webp' ), 'product' => home_url( '/product/volcano-drawing-by-mikulas-galanda-1930-surreal-pen-and-ink-art/' ), 'accent' => '#00bf63' ),
-	array( 'title' => 'Free Curve to the Point', 'year' => '1925', 'kicker' => 'Motion without a figure', 'story' => 'A Bauhaus-era line study becomes a restrained mark that changes as the body turns.', 'art' => $upload . 'kd1.png', 'wear' => $upload . rawurlencode( '14-14ku2-拷贝.webp' ), 'product' => home_url( '/product/geometric-curve-composition-kandinsky-abstract-1925-modernist-line-study/' ), 'accent' => '#2eb4e8' ),
-	array( 'title' => 'Woman and Flower', 'year' => '1937', 'kicker' => 'Folk feeling / modern line', 'story' => 'A vertical Galanda figure, held between tenderness and modernist restraint.', 'art' => $upload . 'njs1.png', 'wear' => $upload . rawurlencode( '14-14ku-拷贝2-3.webp' ), 'product' => home_url( '/product/galanda-woman-and-flower-modernist-floral-portrait-slovak-modernist-painting/' ), 'accent' => '#ef4ca4' ),
-	array( 'title' => 'Stars from Heaven', 'year' => '1776', 'kicker' => 'A new symbol takes shape', 'story' => 'Historic celestial language returns as a bold graphic about independence and invention.', 'art' => $upload . 'ss1.png', 'wear' => $upload . rawurlencode( '14-14ku-拷贝33232.webp' ), 'product' => home_url( '/product/vintage-star-temporary-tattoo/' ), 'accent' => '#7659e8' ),
-	array( 'title' => 'Angels Care', 'year' => '1931', 'kicker' => 'A small guardian', 'story' => 'Paul Klee imagined angels as imperfect witnesses. This one stays light, personal and close.', 'art' => $upload . 'xr1.png', 'wear' => $upload . rawurlencode( '14-14ku-拷贝231-1.webp' ), 'product' => home_url( '/product/klee-angel-tattoo-design-modernist-angel-tattoo-1931-angel-art-tattoo/' ), 'accent' => '#efb72e' ),
-	array( 'title' => 'The Moon of The Starry Night', 'year' => '1889', 'kicker' => 'Turbulence becomes light', 'story' => 'A familiar night sky is cropped into a private symbol: a moon, a current and a restless horizon.', 'art' => $upload . 'xk1.png', 'wear' => $upload . 'xk3.png', 'product' => home_url( '/product/van-gogh-moon-tattoo-starry-night-detail-tattoo-swirl-moon-tattoo-design/' ), 'accent' => '#306ee8' ),
-	array( 'title' => 'Composition in Primary Color', 'year' => '1921', 'kicker' => 'Order / balance / interruption', 'story' => 'Mondrian reduced the world to structure and color. The tattoo keeps the tension without the frame.', 'art' => $upload . 'tx1.png', 'wear' => $upload . 'tx3.png', 'product' => home_url( '/product/piet-mondrian-composition-red-yellow-blue-black-1921/' ), 'accent' => '#e43d2f' ),
-);
+$scenes    = require $theme_dir . '/inc/archive-products.php';
+$asset_uri = $theme_uri . '/assets/archive-products/';
+foreach ( $scenes as &$scene ) {
+	$asset_name       = strtolower( $scene['sku'] );
+	$scene['art']     = $asset_uri . $asset_name . '-1.' . ( 'PTI-013' === $scene['sku'] ? 'png' : 'jpg' );
+	$scene['wear']    = $asset_uri . $asset_name . '-2.png';
+	$scene['product'] = home_url( $scene['product'] );
+}
+unset( $scene );
 $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
@@ -45,12 +43,18 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 <?php wp_body_open(); ?>
 <main class="painter-archive" data-archive-player>
 	<header class="painter-archive__chrome">
-		<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu"><span>PAI<br>NTER</span><i aria-hidden="true"></i></button>
-		<nav class="painter-archive__actions" aria-label="Primary">
-			<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop</a>
-			<a href="mailto:hi@painter.ink">Contact</a>
-			<a href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
-		</nav>
+		<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu"><span>painter.ink</span><i aria-hidden="true"></i></button>
+		<div class="painter-archive__toolbar">
+			<div class="painter-archive__view-switch" aria-label="Browse view">
+				<button type="button" data-view-mode="player" class="is-active" aria-pressed="true" title="Single artwork view"><span class="painter-view-icon painter-view-icon--single" aria-hidden="true"></span></button>
+				<button type="button" data-view-mode="grid" aria-pressed="false" title="View all products"><span class="painter-view-icon painter-view-icon--grid" aria-hidden="true"></span></button>
+			</div>
+			<nav class="painter-archive__actions" aria-label="Primary">
+				<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About</a>
+				<a href="mailto:hi@painter.ink">Contact</a>
+				<a href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
+			</nav>
+		</div>
 	</header>
 	<aside id="archive-menu" class="painter-archive__menu" aria-hidden="true">
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
@@ -66,15 +70,17 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 				class="painter-archive__scene<?php echo 0 === $index ? ' is-active' : ' is-after'; ?>"
 				data-scene="<?php echo esc_attr( $index ); ?>"
 				data-scene-title="<?php echo esc_attr( $scene['title'] ); ?>"
-				data-scene-kicker="<?php echo esc_attr( $scene['kicker'] ); ?>"
-				data-scene-story="<?php echo esc_attr( $scene['story'] ); ?>"
+				data-scene-kicker="<?php echo esc_attr( $scene['artist'] ); ?>"
+				data-scene-story="<?php echo esc_attr( $scene['description'] ); ?>"
 				data-scene-year="<?php echo esc_attr( $scene['year'] ); ?>"
+				data-scene-size="<?php echo esc_attr( $scene['size'] ); ?>"
+				data-scene-sku="<?php echo esc_attr( $scene['sku'] ); ?>"
 				data-scene-accent="<?php echo esc_attr( $scene['accent'] ); ?>"
 				style="--scene-accent:<?php echo esc_attr( $scene['accent'] ); ?>"
 			>
 				<div class="painter-archive__visual">
 					<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
-					<a class="painter-archive__wear" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
+					<a class="painter-archive__wear<?php echo 'PTI-013' === $scene['sku'] ? ' is-single-image' : ''; ?>" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
 						<img src="<?php echo esc_url( $scene['wear'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> temporary tattoo on skin" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>">
 						<span>View motif</span>
 					</a>
@@ -88,6 +94,8 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 			data-scene-kicker="Continue into the collection"
 			data-scene-story="Leave the archive player and browse the complete wearable art collection."
 			data-scene-year="Shop"
+			data-scene-size="17 motifs"
+			data-scene-sku="COLLECTION"
 			data-scene-accent="#00bf63"
 			style="--scene-accent:#00bf63"
 		>
@@ -97,20 +105,41 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 	</div>
 	<footer class="painter-archive__caption" data-archive-caption style="--caption-accent:<?php echo esc_attr( $scenes[0]['accent'] ); ?>">
 		<div class="painter-archive__caption-copy" data-caption-copy>
-			<span class="painter-archive__number" data-caption-number>01</span>
+			<span class="painter-archive__sku" data-caption-sku><?php echo esc_html( $scenes[0]['sku'] ); ?></span>
 			<div>
-				<p data-caption-kicker><?php echo esc_html( $scenes[0]['kicker'] ); ?></p>
+				<p data-caption-kicker><?php echo esc_html( $scenes[0]['artist'] ); ?></p>
 				<h1 data-caption-title><?php echo esc_html( $scenes[0]['title'] ); ?></h1>
 			</div>
-			<p class="painter-archive__story" data-caption-story><?php echo esc_html( $scenes[0]['story'] ); ?></p>
-			<span class="painter-archive__year" data-caption-year><?php echo esc_html( $scenes[0]['year'] ); ?></span>
+			<p class="painter-archive__story" data-caption-story><?php echo esc_html( $scenes[0]['description'] ); ?></p>
+			<span class="painter-archive__size" data-caption-size><?php echo esc_html( $scenes[0]['size'] ); ?></span>
+			<div class="painter-archive__year"><small>Artwork year</small><strong data-caption-year><?php echo esc_html( $scenes[0]['year'] ); ?></strong></div>
 		</div>
 	</footer>
+	<section class="painter-archive__grid-view" data-grid-view aria-label="All products">
+		<div class="painter-archive__grid-head">
+			<p>painter.ink archive</p>
+			<h1>All 17 Motifs</h1>
+		</div>
+		<div class="painter-archive__masonry">
+			<?php foreach ( $scenes as $scene ) : ?>
+				<a class="painter-archive__product-card" href="<?php echo esc_url( $scene['product'] ); ?>">
+					<div class="painter-archive__product-image">
+						<img src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?>" loading="lazy">
+						<img class="is-hover" src="<?php echo esc_url( $scene['wear'] ); ?>" alt="" loading="lazy">
+					</div>
+					<span><?php echo esc_html( $scene['sku'] ); ?></span>
+					<h2><?php echo esc_html( $scene['title'] ); ?></h2>
+					<p><?php echo esc_html( $scene['size'] ); ?></p>
+					<small>Artwork year: <?php echo esc_html( $scene['year'] ); ?></small>
+				</a>
+			<?php endforeach; ?>
+		</div>
+	</section>
 	<aside class="painter-archive__coverflow" aria-label="Scene selector">
 		<div class="painter-archive__rail" data-coverflow>
 			<?php foreach ( $scenes as $index => $scene ) : ?>
 				<button type="button" data-scene-target="<?php echo esc_attr( $index ); ?>" aria-label="Show <?php echo esc_attr( $scene['title'] ); ?>" class="<?php echo 0 === $index ? 'is-active' : ''; ?>">
-					<img src="<?php echo esc_url( $scene['art'] ); ?>" alt="" loading="lazy"><span><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+					<img src="<?php echo esc_url( $scene['art'] ); ?>" alt="" loading="lazy">
 				</button>
 			<?php endforeach; ?>
 		</div>
