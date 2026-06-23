@@ -1,0 +1,30 @@
+#!/usr/bin/expect -f
+
+if {$argc < 2} {
+    puts stderr "usage: nas-run.exp user@host command..."
+    exit 2
+}
+
+set timeout 60
+set target [lindex $argv 0]
+set command [join [lrange $argv 1 end] " "]
+set password $env(NAS_PASSWORD)
+
+spawn ssh -tt -o StrictHostKeyChecking=accept-new $target $command
+
+set password_count 0
+expect {
+    -re "assword.*:" {
+        incr password_count
+        send -- "$password\r"
+        exp_continue
+    }
+    eof {
+        catch wait result
+        exit [lindex $result 3]
+    }
+    timeout {
+        puts stderr "SSH command timed out"
+        exit 124
+    }
+}
