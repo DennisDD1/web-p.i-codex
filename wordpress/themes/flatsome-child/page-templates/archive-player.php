@@ -62,7 +62,16 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 	</aside>
 	<div class="painter-archive__viewport" data-archive-viewport>
 		<?php foreach ( $scenes as $index => $scene ) : ?>
-			<section class="painter-archive__scene<?php echo 0 === $index ? ' is-active' : ''; ?>" data-scene="<?php echo esc_attr( $index ); ?>" style="--scene-accent:<?php echo esc_attr( $scene['accent'] ); ?>">
+			<section
+				class="painter-archive__scene<?php echo 0 === $index ? ' is-active' : ' is-after'; ?>"
+				data-scene="<?php echo esc_attr( $index ); ?>"
+				data-scene-title="<?php echo esc_attr( $scene['title'] ); ?>"
+				data-scene-kicker="<?php echo esc_attr( $scene['kicker'] ); ?>"
+				data-scene-story="<?php echo esc_attr( $scene['story'] ); ?>"
+				data-scene-year="<?php echo esc_attr( $scene['year'] ); ?>"
+				data-scene-accent="<?php echo esc_attr( $scene['accent'] ); ?>"
+				style="--scene-accent:<?php echo esc_attr( $scene['accent'] ); ?>"
+			>
 				<div class="painter-archive__visual">
 					<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 					<a class="painter-archive__wear" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
@@ -70,19 +79,33 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 						<span>View motif</span>
 					</a>
 				</div>
-				<footer class="painter-archive__caption">
-					<span class="painter-archive__number"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
-					<div><p><?php echo esc_html( $scene['kicker'] ); ?></p><h1><?php echo esc_html( $scene['title'] ); ?></h1></div>
-					<p class="painter-archive__story"><?php echo esc_html( $scene['story'] ); ?></p>
-					<span class="painter-archive__year"><?php echo esc_html( $scene['year'] ); ?></span>
-				</footer>
 			</section>
 		<?php endforeach; ?>
-		<section class="painter-archive__shop" data-scene="<?php echo esc_attr( count( $scenes ) ); ?>">
+		<section
+			class="painter-archive__scene painter-archive__shop is-after"
+			data-scene="<?php echo esc_attr( count( $scenes ) ); ?>"
+			data-scene-title="Most Worn Motifs"
+			data-scene-kicker="Continue into the collection"
+			data-scene-story="Leave the archive player and browse the complete wearable art collection."
+			data-scene-year="Shop"
+			data-scene-accent="#00bf63"
+			style="--scene-accent:#00bf63"
+		>
 			<p>Continue into the collection</p><h2>Most Worn Motifs</h2>
 			<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop all motifs <span aria-hidden="true">&rarr;</span></a>
 		</section>
 	</div>
+	<footer class="painter-archive__caption" data-archive-caption style="--caption-accent:<?php echo esc_attr( $scenes[0]['accent'] ); ?>">
+		<div class="painter-archive__caption-copy" data-caption-copy>
+			<span class="painter-archive__number" data-caption-number>01</span>
+			<div>
+				<p data-caption-kicker><?php echo esc_html( $scenes[0]['kicker'] ); ?></p>
+				<h1 data-caption-title><?php echo esc_html( $scenes[0]['title'] ); ?></h1>
+			</div>
+			<p class="painter-archive__story" data-caption-story><?php echo esc_html( $scenes[0]['story'] ); ?></p>
+			<span class="painter-archive__year" data-caption-year><?php echo esc_html( $scenes[0]['year'] ); ?></span>
+		</div>
+	</footer>
 	<aside class="painter-archive__coverflow" aria-label="Scene selector">
 		<div class="painter-archive__rail" data-coverflow>
 			<?php foreach ( $scenes as $index => $scene ) : ?>

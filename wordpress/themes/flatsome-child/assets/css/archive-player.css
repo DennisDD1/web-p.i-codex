@@ -9,18 +9,26 @@ html,body.painter-archive-page { margin:0; background:var(--archive-paper); colo
 .painter-archive__brand i { width:8px; height:8px; margin-top:49px; border-right:2px solid #00bf63; border-bottom:2px solid #00bf63; transform:rotate(45deg); }
 .painter-archive__actions { display:flex; align-items:center; min-height:46px; padding:0 18px; gap:22px; }
 .painter-archive__actions a { color:inherit; font-size:13px; text-transform:uppercase; text-decoration:none; }
-.painter-archive__viewport { height:100svh; overflow-y:auto; scroll-snap-type:y mandatory; scrollbar-width:none; }
-.painter-archive__viewport::-webkit-scrollbar { display:none; }
-.painter-archive__scene,.painter-archive__shop { position:relative; width:100%; height:100svh; min-height:620px; scroll-snap-align:start; overflow:hidden; }
-.painter-archive__visual { position:absolute; inset:0 0 126px; display:grid; place-items:center; background:linear-gradient(115deg,color-mix(in srgb,var(--scene-accent) 25%,transparent),transparent 46%),#d9d9d4; }
+.painter-archive__viewport { position:absolute; inset:0 0 126px; overflow:hidden; background:#d9d9d4; }
+.painter-archive__scene,.painter-archive__shop { position:absolute; inset:0; width:100%; height:100%; min-height:0; overflow:hidden; visibility:hidden; transform:translateY(100%); transition:transform 780ms cubic-bezier(.76,0,.24,1); will-change:transform; }
+.painter-archive__scene.is-active { z-index:3; visibility:visible; transform:translateY(0); }
+.painter-archive__scene.is-before { z-index:1; visibility:visible; transform:translateY(-100%); }
+.painter-archive__scene.is-after { z-index:1; visibility:visible; transform:translateY(100%); }
+.painter-archive__scene.is-entering { z-index:4; visibility:visible; transform:translateY(0); }
+.painter-archive__scene.is-leaving-up { z-index:3; visibility:visible; transform:translateY(-100%); }
+.painter-archive__scene.is-leaving-down { z-index:3; visibility:visible; transform:translateY(100%); }
+.painter-archive__visual { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(115deg,color-mix(in srgb,var(--scene-accent) 25%,transparent),transparent 46%),#d9d9d4; }
 .painter-archive__art { width:min(57vw,900px); height:min(73vh,760px); object-fit:contain; filter:drop-shadow(0 24px 35px rgba(0,0,0,.17)); transform:translateX(-7vw) scale(.92); transition:transform 900ms cubic-bezier(.2,.8,.2,1); }
 .painter-archive__wear { position:absolute; right:14vw; top:20%; width:clamp(190px,22vw,350px); aspect-ratio:4/5; background:#fff; padding:10px; transform:translate3d(40px,20px,0) rotate(2deg); opacity:0; transition:800ms cubic-bezier(.2,.8,.2,1) 120ms; box-shadow:0 22px 55px rgba(0,0,0,.2); color:#fff; text-decoration:none; }
 .painter-archive__wear img { width:100%; height:100%; object-fit:cover; }
 .painter-archive__wear span { position:absolute; left:22px; bottom:20px; padding-bottom:4px; border-bottom:1px solid currentColor; font-size:12px; text-transform:uppercase; }
 .painter-archive__scene.is-active .painter-archive__art { transform:translateX(-7vw) scale(1); }
 .painter-archive__scene.is-active .painter-archive__wear { opacity:1; transform:translate3d(0,0,0) rotate(2deg); }
-.painter-archive__caption { position:absolute; inset:auto 0 0; height:126px; display:grid; grid-template-columns:90px minmax(240px,1.1fr) minmax(280px,1fr) 100px; align-items:center; gap:26px; padding:18px 152px 18px 30px; border-top:1px solid var(--scene-accent); background:rgba(244,243,239,.97); }
-.painter-archive__number { font-size:34px; color:var(--scene-accent); }
+.painter-archive__caption { position:fixed; z-index:24; inset:auto 0 0; height:126px; overflow:hidden; border-top:1px solid var(--caption-accent); background:#f4f3ef; transition:border-color 220ms ease; }
+.painter-archive__caption-copy { height:100%; display:grid; grid-template-columns:90px minmax(240px,1.1fr) minmax(280px,1fr) 100px; align-items:center; gap:26px; padding:18px 152px 18px 30px; clip-path:inset(0); }
+.painter-archive__caption-copy.is-wiping { animation:caption-wipe-out 230ms cubic-bezier(.7,0,.3,1) forwards; }
+.painter-archive__caption-copy.is-revealing { animation:caption-wipe-in 360ms cubic-bezier(.2,.8,.2,1) forwards; }
+.painter-archive__number { font-size:34px; color:var(--caption-accent); transition:color 220ms ease; }
 .painter-archive__caption p { margin:0 0 5px; font-size:11px; text-transform:uppercase; }
 .painter-archive__caption h1 { margin:0; font-size:clamp(22px,2.2vw,38px); line-height:1; font-weight:500; }
 .painter-archive__caption .painter-archive__story { margin:0; max-width:540px; font-size:13px; line-height:1.5; text-transform:none; }
@@ -41,17 +49,26 @@ html,body.painter-archive-page { margin:0; background:var(--archive-paper); colo
 .painter-archive__shop p { font-size:12px; text-transform:uppercase; }
 .painter-archive__shop h2 { margin:8px 0 42px; font-size:clamp(52px,9vw,150px); font-weight:500; line-height:.9; }
 .painter-archive__shop a { padding:16px 22px; border:1px solid #fff; color:#fff; text-decoration:none; text-transform:uppercase; font-size:12px; }
+@keyframes caption-wipe-out {
+	from { clip-path:inset(0 0 0 0); transform:translateX(0); }
+	to { clip-path:inset(0 100% 0 0); transform:translateX(-24px); }
+}
+@keyframes caption-wipe-in {
+	from { clip-path:inset(0 0 0 100%); transform:translateX(24px); }
+	to { clip-path:inset(0 0 0 0); transform:translateX(0); }
+}
 @media (max-width:767px) {
 	.painter-archive__chrome { inset:12px 12px auto; }
 	.painter-archive__brand { width:62px; height:62px; padding:9px; font-size:18px; }
 	.painter-archive__brand i { margin-top:31px; }
 	.painter-archive__actions { min-height:38px; padding:0 11px; gap:12px; }
 	.painter-archive__actions a { font-size:10px; }
-	.painter-archive__visual { bottom:158px; }
 	.painter-archive__art { width:88vw; height:53vh; transform:translateY(-6vh) scale(.94); }
 	.painter-archive__scene.is-active .painter-archive__art { transform:translateY(-6vh) scale(1); }
 	.painter-archive__wear { top:auto; right:7vw; bottom:18%; width:34vw; min-width:126px; }
-	.painter-archive__caption { height:158px; grid-template-columns:38px 1fr auto; gap:12px; padding:14px 14px 58px; }
+	.painter-archive__viewport { bottom:158px; }
+	.painter-archive__caption { height:158px; }
+	.painter-archive__caption-copy { grid-template-columns:38px 1fr auto; gap:12px; padding:14px 14px 58px; }
 	.painter-archive__number { font-size:22px; }
 	.painter-archive__caption h1 { font-size:21px; }
 	.painter-archive__caption .painter-archive__story { display:none; }

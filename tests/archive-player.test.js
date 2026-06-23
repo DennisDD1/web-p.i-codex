@@ -20,11 +20,19 @@ assert.strictEqual((php.match(/'title'\s*=>/g) || []).length, 8, 'expected eight
 assert.match(php, /noindex, nofollow/);
 assert.match(php, /painter-archive__coverflow/);
 assert.match(php, /wc_get_cart_url/);
+assert.strictEqual((php.match(/class="painter-archive__caption"/g) || []).length, 1, 'caption must be a single fixed panel');
+assert.match(php, /data-scene-title=/);
 assert.match(js, /addEventListener\('wheel'/);
 assert.match(js, /addEventListener\('touchstart'/);
 assert.match(js, /prefers-reduced-motion/);
-assert.match(js, /viewport\.scrollTop\s*=/);
-assert.match(css, /scroll-snap-type:\s*y mandatory/);
+assert.match(js, /wheelGestureActive/);
+assert.match(js, /finishVisualTransition/);
+assert.match(js, /updateCaption/);
+assert.doesNotMatch(js, /scrollTop\s*=/);
+assert.doesNotMatch(css, /scroll-snap-type/);
+assert.match(css, /\.painter-archive__caption\s*\{[^}]*position:fixed/s);
+assert.match(css, /\.painter-archive__scene\.is-entering/);
+assert.match(css, /\.painter-archive__caption-copy\.is-wiping/);
 assert.match(css, /perspective:/);
 assert.match(css, /@media \(max-width:\s*767px\)/);
 
