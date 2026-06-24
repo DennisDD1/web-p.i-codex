@@ -43,7 +43,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 <?php wp_body_open(); ?>
 <main class="painter-archive" data-archive-player>
 	<header class="painter-archive__chrome">
-		<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu"><span>painter.ink</span><i aria-hidden="true"></i></button>
+		<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu" aria-label="Open menu"><span class="painter-archive__hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
 		<div class="painter-archive__toolbar">
 			<div class="painter-archive__view-switch" aria-label="Browse view">
 				<button type="button" data-view-mode="player" class="is-active" aria-pressed="true" title="Single artwork view"><span class="painter-view-icon painter-view-icon--single" aria-hidden="true"></span></button>
@@ -60,9 +60,10 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
 		<p>PAINTER.INK / WEARABLE ARCHIVE</p>
 		<h2>Historic images, restored for real skin.</h2>
-		<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About painter.ink</a>
-		<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">All motifs</a>
-		<a href="mailto:hi@painter.ink">hi@painter.ink</a>
+		<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About Painter.ink</a>
+		<a href="<?php echo esc_url( home_url( '/shipping-policy/' ) ); ?>">Shipping Policy</a>
+		<a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms &amp; Conditions</a>
+		<a href="<?php echo esc_url( home_url( '/refund-resolution-policy/' ) ); ?>">Refund &amp; Resolution Policy</a>
 	</aside>
 	<div class="painter-archive__viewport" data-archive-viewport>
 		<?php foreach ( $scenes as $index => $scene ) : ?>
@@ -82,7 +83,6 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 					<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 					<a class="painter-archive__wear<?php echo 'PTI-013' === $scene['sku'] ? ' is-single-image' : ''; ?>" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
 						<img src="<?php echo esc_url( $scene['wear'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> temporary tattoo on skin" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>">
-						<span>View motif</span>
 					</a>
 				</div>
 			</section>

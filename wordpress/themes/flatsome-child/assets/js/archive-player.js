@@ -166,6 +166,7 @@
 		viewMode = mode === 'grid' ? 'grid' : 'player';
 		root.setAttribute('data-current-view', viewMode);
 		document.body.classList.toggle('painter-archive-grid-mode', viewMode === 'grid');
+		document.documentElement.classList.toggle('painter-archive-grid-mode', viewMode === 'grid');
 		gridView.setAttribute('aria-hidden', viewMode === 'grid' ? 'false' : 'true');
 		viewButtons.forEach(function (button) {
 			var selected = button.getAttribute('data-view-mode') === viewMode;
