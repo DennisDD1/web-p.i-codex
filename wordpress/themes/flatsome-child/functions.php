@@ -253,7 +253,7 @@ add_action( 'wp_footer', function () {
 }, 30 );
 
 add_action( 'wp_body_open', function () {
-	if ( is_cart() || is_checkout() || is_account_page() ) {
+	if ( is_front_page() || is_page_template( 'page-templates/archive-player.php' ) || is_cart() || is_checkout() || is_account_page() ) {
 		return;
 	}
 	?>

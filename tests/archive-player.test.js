@@ -45,6 +45,7 @@ assert.match(php, /Terms &amp; Conditions/);
 assert.match(php, /Refund &amp; Resolution Policy/);
 assert.doesNotMatch(php, /Historic images, restored for real skin\./);
 assert.match(php, /painter-archive__art-link/);
+assert.doesNotMatch(php, /is-single-image/);
 assert.match(php, /data-add-cart/);
 assert.match(php, /Add to cart/);
 assert.match(php, /View cart/);
@@ -81,6 +82,7 @@ assert.match(css, /\.painter-archive__toolbar\s*\{[^}]*height:58px/s);
 assert.match(css, /\.painter-archive__menu a:hover[^}]*color:#fff/s);
 assert.doesNotMatch(css, /painter-archive__toolbar a:first-of-type/);
 assert.match(css, /body\.painter-archive-page\s+\.painter-offer-bar\s*\{[^}]*display:none!important/s);
+assert.doesNotMatch(css, /painter-archive__wear\.is-single-image/);
 assert.match(css, /\.painter-archive__product-image img\.is-hover[^}]*background:transparent/s);
 assert.doesNotMatch(css, /perspective:/);
 assert.match(css, /@media \(max-width:\s*767px\)/);
@@ -88,9 +90,17 @@ assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__chrome\s*
 assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__chrome\s*\{[^}]*align-items:center/s);
 assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__left-controls\s*\{[^}]*gap:14px/s);
 assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__toolbar\s*\{[^}]*height:46px/s);
-assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__art-link\s*\{[^}]*width:86vw/s);
-assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__art-link\s*\{[^}]*height:44vh/s);
-assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__wear\s*\{[^}]*bottom:74px/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__art-link\s*\{[^}]*width:78vw/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__art-link\s*\{[^}]*height:39vh/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__art-link\s*\{[^}]*translate\(-6vw,-4vh\)/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__wear\s*\{[^}]*bottom:82px/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__wear\s*\{[^}]*max-width:96px/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__wear-actions\s*\{[^}]*right:0/s);
+assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__wear-actions\s*\{[^}]*transform:none/s);
 assert.match(css, /@media \(max-width:\s*767px\)[^]*\.painter-archive__caption-copy\s*\{[^}]*grid-template-columns:52px minmax\(0,1fr\) 98px/s);
+
+const functionsPhp = fs.readFileSync(path.join(root, 'wordpress/themes/flatsome-child/functions.php'), 'utf8');
+assert.match(functionsPhp, /is_front_page\(\)/);
+assert.match(functionsPhp, /is_page_template\( 'page-templates\/archive-player\.php' \)/);
 
 console.log('archive player static contract passed');

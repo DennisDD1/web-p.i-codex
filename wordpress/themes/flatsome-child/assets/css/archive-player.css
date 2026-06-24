@@ -39,7 +39,6 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive__wear-actions { position:absolute; left:50%; top:calc(100% + 12px); display:flex; gap:8px; transform:translateX(-50%); white-space:nowrap; }
 .painter-archive__cart-action { display:inline-flex; align-items:center; justify-content:center; min-height:31px; padding:0 12px; border:1px solid #111; background:#111; color:#fff; font-size:10px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; text-decoration:none; }
 .painter-archive__cart-action.is-secondary { background:rgba(247,246,242,.92); color:#111; }
-.painter-archive__wear.is-single-image { display:none; }
 .painter-archive__scene.is-active .painter-archive__art-link { transform:translateX(-7vw) scale(1); }
 .painter-archive__scene.is-active .painter-archive__wear { opacity:1; transform:translate3d(0,0,0); }
 .painter-archive__caption { position:fixed; z-index:24; inset:auto 0 0; height:var(--archive-caption-height); overflow:hidden; border-top:1px solid var(--caption-accent); background:#f4f3ef; transition:border-color 220ms ease; }
@@ -112,10 +111,10 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 	.painter-view-icon--grid { width:6px; height:6px; margin:-9px 0 0 -9px; box-shadow:9px 0 currentColor,0 9px currentColor,9px 9px currentColor; }
 	.painter-archive__actions { gap:15px; }
 	.painter-archive__actions a { font-size:11px; }
-	.painter-archive__art-link { width:86vw; height:44vh; transform:translateY(-5vh) scale(.94); }
-	.painter-archive__scene.is-active .painter-archive__art-link { transform:translateY(-5vh) scale(1); }
-	.painter-archive__wear { right:7vw; bottom:74px; width:23vw; min-width:78px; max-width:112px; }
-	.painter-archive__wear-actions { top:calc(100% + 10px); gap:6px; }
+	.painter-archive__art-link { width:78vw; height:39vh; transform:translate(-6vw,-4vh) scale(.94); }
+	.painter-archive__scene.is-active .painter-archive__art-link { transform:translate(-6vw,-4vh) scale(1); }
+	.painter-archive__wear { right:5vw; bottom:82px; width:21vw; min-width:72px; max-width:96px; }
+	.painter-archive__wear-actions { left:auto; right:0; top:calc(100% + 10px); gap:6px; transform:none; }
 	.painter-archive__cart-action { min-height:31px; padding:0 10px; font-size:10px; }
 	.painter-archive { --archive-caption-height:150px; }
 	.painter-archive__caption-copy { grid-template-columns:52px minmax(0,1fr) 98px; gap:10px; padding:15px 14px 56px; }

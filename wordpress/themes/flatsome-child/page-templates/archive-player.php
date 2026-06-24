@@ -87,7 +87,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 					<a class="painter-archive__art-link" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="View <?php echo esc_attr( $scene['title'] ); ?>">
 						<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 					</a>
-					<div class="painter-archive__wear<?php echo 'PTI-013' === $scene['sku'] ? ' is-single-image' : ''; ?>">
+					<div class="painter-archive__wear">
 						<a class="painter-archive__wear-image" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
 							<img src="<?php echo esc_url( $scene['wear'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> temporary tattoo on skin" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>">
 						</a>
