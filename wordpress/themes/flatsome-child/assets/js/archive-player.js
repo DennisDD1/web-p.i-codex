@@ -22,6 +22,7 @@
 	var menu = root.querySelector('.painter-archive__menu');
 	var toggle = root.querySelector('[data-menu-toggle]');
 	var close = root.querySelector('[data-menu-close]');
+	var mailtoLinks = Array.prototype.slice.call(root.querySelectorAll('[data-mailto-trigger]'));
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	var visualDuration = reducedMotion ? 0 : 560;
 	var captionWipeDuration = reducedMotion ? 0 : 180;
@@ -167,6 +168,14 @@
 
 	toggle.addEventListener('click', function () { toggleMenu(!menu.classList.contains('is-open')); });
 	close.addEventListener('click', function () { toggleMenu(false); });
+	mailtoLinks.forEach(function (link) {
+		link.addEventListener('click', function (event) {
+			event.preventDefault();
+			var user = link.getAttribute('data-mailto-user') || '';
+			var domain = link.getAttribute('data-mailto-domain') || '';
+			if (user && domain) window.location.href = 'mailto:' + user + '@' + domain;
+		});
+	});
 	document.addEventListener('keydown', function (event) {
 		if (event.key === 'Escape') toggleMenu(false);
 		if (viewMode !== 'player') return;

@@ -53,7 +53,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 		</div>
 		<div class="painter-archive__toolbar">
 			<nav class="painter-archive__actions" aria-label="Primary">
-				<a href="mailto:hi@painter.ink">Connect</a>
+				<a href="#" data-mailto-trigger data-mailto-user="hi" data-mailto-domain="painter.ink">Connect</a>
 				<a href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
 			</nav>
 		</div>
