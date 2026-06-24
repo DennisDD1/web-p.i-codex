@@ -62,7 +62,6 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 	<aside id="archive-menu" class="painter-archive__menu" aria-hidden="true">
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
 		<p>PAINTER.INK / WEARABLE ARCHIVE</p>
-		<h2>Historic images, restored for real skin.</h2>
 		<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About Painter.ink</a>
 		<a href="<?php echo esc_url( home_url( '/shipping-policy/' ) ); ?>">Shipping Policy</a>
 		<a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms &amp; Conditions</a>

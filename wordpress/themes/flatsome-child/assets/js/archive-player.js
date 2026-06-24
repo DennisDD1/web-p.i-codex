@@ -4,7 +4,6 @@
 	var root = document.querySelector('[data-archive-player]');
 	if (!root) return;
 
-	var stage = root.querySelector('[data-archive-viewport]');
 	var scenes = Array.prototype.slice.call(root.querySelectorAll('[data-scene]'));
 	var buttons = Array.prototype.slice.call(root.querySelectorAll('[data-scene-target]'));
 	var viewButtons = Array.prototype.slice.call(root.querySelectorAll('[data-view-mode]'));
@@ -24,14 +23,9 @@
 	var toggle = root.querySelector('[data-menu-toggle]');
 	var close = root.querySelector('[data-menu-close]');
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	var visualDuration = reducedMotion ? 0 : 560;
 	var captionWipeDuration = reducedMotion ? 0 : 180;
 	var active = 0;
-	var transitioning = false;
-	var wheelGestureActive = false;
-	var wheelReleaseTimer = 0;
-	var wheelReleasePending = false;
-	var touchStart = 0;
+	var ticking = false;
 	var viewMode = 'player';
 
 	function sceneData(index) {
@@ -86,80 +80,54 @@
 
 	function normalizeScenes() {
 		scenes.forEach(function (scene, index) {
-			scene.classList.remove('is-active', 'is-before', 'is-after', 'is-entering', 'is-leaving-up', 'is-leaving-down');
-			scene.classList.add(index < active ? 'is-before' : index > active ? 'is-after' : 'is-active');
+			scene.classList.toggle('is-active', index === active);
+			scene.classList.toggle('is-before', index < active);
+			scene.classList.toggle('is-after', index > active);
 		});
 	}
 
-	function releaseWheelGesture() {
-		if (transitioning) {
-			wheelReleasePending = true;
-			return;
-		}
-		wheelGestureActive = false;
-		wheelReleasePending = false;
-	}
-
-	function finishVisualTransition(target) {
-		active = target;
-		transitioning = false;
+	function setActive(index, withCaption) {
+		index = Math.max(0, Math.min(index, scenes.length - 1));
+		if (index === active) return;
+		active = index;
 		normalizeScenes();
 		updateButtons(active);
-		updateCaption(active);
-		if (wheelReleasePending) releaseWheelGesture();
+		if (withCaption !== false) updateCaption(active);
 	}
 
-	function changeScene(target) {
-		target = Math.max(0, Math.min(target, scenes.length - 1));
-		if (transitioning || target === active) return false;
-
-		var current = active;
-		var direction = target > current ? 1 : -1;
-		var currentScene = scenes[current];
-		var targetScene = scenes[target];
-		transitioning = true;
-		updateButtons(target);
-
-		targetScene.classList.remove('is-before', 'is-after');
-		targetScene.classList.add(direction > 0 ? 'is-after' : 'is-before');
-		void targetScene.offsetWidth;
-		targetScene.classList.add('is-entering');
-		currentScene.classList.add(direction > 0 ? 'is-leaving-up' : 'is-leaving-down');
-
-		window.setTimeout(function () {
-			finishVisualTransition(target);
-		}, visualDuration);
-		return true;
+	function nearestSceneIndex() {
+		var targetLine = window.innerHeight * 0.42;
+		var closest = active;
+		var closestDistance = Infinity;
+		scenes.forEach(function (scene, index) {
+			var rect = scene.getBoundingClientRect();
+			var distance = Math.abs(rect.top - targetLine);
+			if (distance < closestDistance) {
+				closest = index;
+				closestDistance = distance;
+			}
+		});
+		return closest;
 	}
 
-	function registerWheelGesture(event) {
-		if (viewMode !== 'player') return;
-		if (menu.classList.contains('is-open')) return;
-		event.preventDefault();
-		wheelReleasePending = false;
-		window.clearTimeout(wheelReleaseTimer);
-		wheelReleaseTimer = window.setTimeout(releaseWheelGesture, 140);
-
-		if (wheelGestureActive || transitioning || Math.abs(event.deltaY) < 12) return;
-		if (changeScene(active + (event.deltaY > 0 ? 1 : -1))) {
-			wheelGestureActive = true;
-		}
+	function scheduleActiveFromScroll() {
+		if (viewMode !== 'player' || ticking) return;
+		ticking = true;
+		window.requestAnimationFrame(function () {
+			ticking = false;
+			setActive(nearestSceneIndex());
+		});
 	}
 
-	window.addEventListener('wheel', registerWheelGesture, { passive: false });
-	root.addEventListener('touchstart', function (event) {
-		if (viewMode !== 'player') return;
-		touchStart = event.touches[0].clientY;
-	}, { passive: true });
-	root.addEventListener('touchend', function (event) {
-		if (viewMode !== 'player') return;
-		var distance = touchStart - event.changedTouches[0].clientY;
-		if (!transitioning && Math.abs(distance) > 45) changeScene(active + (distance > 0 ? 1 : -1));
-	}, { passive: true });
+	function scrollToScene(index) {
+		index = Math.max(0, Math.min(index, scenes.length - 1));
+		scenes[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+		setActive(index);
+	}
 
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
-			if (!transitioning) changeScene(Number(button.getAttribute('data-scene-target')));
+			scrollToScene(Number(button.getAttribute('data-scene-target')));
 		});
 	});
 
@@ -174,10 +142,11 @@
 			button.classList.toggle('is-active', selected);
 			button.setAttribute('aria-pressed', selected ? 'true' : 'false');
 		});
-		wheelGestureActive = false;
-		wheelReleasePending = false;
-		window.clearTimeout(wheelReleaseTimer);
-		if (viewMode === 'grid') window.scrollTo(0, 0);
+		if (viewMode === 'grid') {
+			window.scrollTo({ top: 0, behavior: 'auto' });
+		} else {
+			scrollToScene(active);
+		}
 	}
 
 	viewButtons.forEach(function (button) {
@@ -196,9 +165,12 @@
 	close.addEventListener('click', function () { toggleMenu(false); });
 	document.addEventListener('keydown', function (event) {
 		if (event.key === 'Escape') toggleMenu(false);
-		if (!transitioning && event.key === 'ArrowDown') changeScene(active + 1);
-		if (!transitioning && event.key === 'ArrowUp') changeScene(active - 1);
+		if (viewMode !== 'player') return;
+		if (event.key === 'ArrowDown') scrollToScene(active + 1);
+		if (event.key === 'ArrowUp') scrollToScene(active - 1);
 	});
+	window.addEventListener('scroll', scheduleActiveFromScroll, { passive: true });
+	window.addEventListener('resize', scheduleActiveFromScroll, { passive: true });
 
 	normalizeScenes();
 	updateButtons(0);
