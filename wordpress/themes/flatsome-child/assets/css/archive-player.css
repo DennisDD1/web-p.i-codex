@@ -6,12 +6,13 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 .painter-archive,.painter-archive * { box-sizing:border-box; }
 .painter-archive { position:relative; height:100svh; font-family:Arial,Helvetica,sans-serif; letter-spacing:0; }
 .painter-archive__chrome { position:fixed; inset:22px 24px auto; z-index:30; display:flex; justify-content:space-between; align-items:flex-start; pointer-events:none; }
-.painter-archive__brand,.painter-archive__toolbar { pointer-events:auto; border:1px solid #111; background:rgba(247,246,242,.94); backdrop-filter:blur(12px); }
+.painter-archive__left-controls,.painter-archive__toolbar { pointer-events:auto; border:1px solid #111; background:rgba(247,246,242,.94); backdrop-filter:blur(12px); }
+.painter-archive__left-controls { display:flex; align-items:center; min-height:48px; }
 .painter-archive__brand { width:58px; height:48px; padding:0; display:grid; place-items:center; color:#111; cursor:pointer; }
 .painter-archive__hamburger { width:24px; display:grid; gap:5px; }
 .painter-archive__hamburger i { display:block; width:100%; height:2px; background:currentColor; }
-.painter-archive__toolbar { display:flex; align-items:center; min-height:48px; padding:0 16px 0 8px; gap:17px; }
-.painter-archive__view-switch { align-self:stretch; display:flex; align-items:center; gap:4px; padding:0 14px 0 0; border-right:1px solid #bbb; }
+.painter-archive__toolbar { display:flex; align-items:center; min-height:48px; padding:0 16px; gap:17px; }
+.painter-archive__view-switch { align-self:stretch; display:flex; align-items:center; gap:4px; padding:0 12px; border-left:1px solid #bbb; }
 .painter-archive__view-switch button { width:36px; height:34px; display:grid; place-items:center; padding:0; border:0; background:transparent; color:#777; cursor:pointer; }
 .painter-archive__view-switch button.is-active { color:#00a85a; background:#fff; outline:1px solid currentColor; }
 .painter-view-icon { position:relative; display:block; width:18px; height:18px; }
@@ -97,11 +98,12 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 }
 @media (max-width:767px) {
 	.painter-archive__chrome { inset:12px 12px auto; }
+	.painter-archive__left-controls { min-height:42px; }
 	.painter-archive__brand { width:48px; height:42px; }
 	.painter-archive__toolbar { min-height:42px; padding:0 7px; gap:7px; }
 	.painter-archive__toolbar a { padding:5px 4px; font-size:11px; }
 	.painter-archive__toolbar a:first-of-type { display:none; }
-	.painter-archive__view-switch { padding-right:7px; }
+	.painter-archive__view-switch { padding:0 7px; }
 	.painter-archive__view-switch button { width:31px; height:30px; }
 	.painter-archive__actions { gap:9px; }
 	.painter-archive__actions a { font-size:9px; }

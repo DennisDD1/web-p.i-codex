@@ -26,6 +26,8 @@ assert.strictEqual((php.match(/class="painter-archive__caption"/g) || []).length
 assert.match(php, /data-scene-title=/);
 assert.match(php, /data-view-mode="player"/);
 assert.match(php, /data-view-mode="grid"/);
+assert.match(php, /painter-archive__left-controls/);
+assert.match(css, /\.painter-archive__left-controls/);
 assert.match(php, /painter-archive__grid-view/);
 assert.match(php, /painter-archive__hamburger/);
 assert.match(php, /About Painter\.ink/);

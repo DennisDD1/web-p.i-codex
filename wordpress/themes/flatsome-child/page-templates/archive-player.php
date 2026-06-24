@@ -44,12 +44,14 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 <?php wp_body_open(); ?>
 <main class="painter-archive" data-archive-player>
 	<header class="painter-archive__chrome">
-		<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu" aria-label="Open menu"><span class="painter-archive__hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
-		<div class="painter-archive__toolbar">
+		<div class="painter-archive__left-controls">
+			<button class="painter-archive__brand" type="button" data-menu-toggle aria-expanded="false" aria-controls="archive-menu" aria-label="Open menu"><span class="painter-archive__hamburger" aria-hidden="true"><i></i><i></i><i></i></span></button>
 			<div class="painter-archive__view-switch" aria-label="Browse view">
 				<button type="button" data-view-mode="player" class="is-active" aria-pressed="true" title="Single artwork view"><span class="painter-view-icon painter-view-icon--single" aria-hidden="true"></span></button>
 				<button type="button" data-view-mode="grid" aria-pressed="false" title="View all products"><span class="painter-view-icon painter-view-icon--grid" aria-hidden="true"></span></button>
 			</div>
+		</div>
+		<div class="painter-archive__toolbar">
 			<nav class="painter-archive__actions" aria-label="Primary">
 				<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About</a>
 				<a href="mailto:hi@painter.ink">Contact</a>
