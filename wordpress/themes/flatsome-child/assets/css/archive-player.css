@@ -4,6 +4,7 @@ html,body.painter-archive-page { margin:0; background:var(--archive-paper); colo
 html.painter-archive-grid-mode,
 body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:auto; scroll-snap-type:none; }
 .painter-archive-page #wpadminbar { display:none; }
+body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive,.painter-archive * { box-sizing:border-box; }
 .painter-archive { position:relative; min-height:100svh; font-family:'Montserrat',Arial,Helvetica,sans-serif; letter-spacing:0; }
 .painter-archive__chrome { position:fixed; inset:22px 24px auto; z-index:30; display:flex; justify-content:space-between; align-items:flex-start; pointer-events:none; }
@@ -98,28 +99,33 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 	to { clip-path:inset(0 0 0 0); transform:translateX(0); }
 }
 @media (max-width:767px) {
-	.painter-archive__chrome { inset:12px 12px auto; }
-	.painter-archive__left-controls { height:42px; }
-	.painter-archive__brand { width:48px; height:42px; }
-	.painter-archive__toolbar { height:42px; padding:0 7px; gap:7px; }
-	.painter-archive__toolbar a { padding:5px 4px; font-size:11px; }
-	.painter-archive__view-switch { gap:10px; padding:0; }
-	.painter-archive__view-switch button { width:38px; height:38px; }
-	.painter-archive__actions { gap:9px; }
-	.painter-archive__actions a { font-size:9px; }
-	.painter-archive__art-link { width:88vw; height:53vh; transform:translateY(-6vh) scale(.94); }
-	.painter-archive__scene.is-active .painter-archive__art-link { transform:translateY(-6vh) scale(1); }
-	.painter-archive__wear { right:7vw; bottom:max(88px,calc((100% - 53vh) / 2)); width:29vw; min-width:108px; }
-	.painter-archive__wear-actions { top:calc(100% + 8px); gap:5px; }
-	.painter-archive__cart-action { min-height:27px; padding:0 8px; font-size:9px; }
-	.painter-archive { --archive-caption-height:158px; }
-	.painter-archive__caption-copy { grid-template-columns:54px 1fr auto; gap:10px; padding:12px 12px 58px; }
-	.painter-archive__sku { font-size:10px; }
-	.painter-archive__caption h1 { font-size:21px; }
+	.painter-archive__chrome { inset:10px 12px auto; align-items:center; }
+	.painter-archive__left-controls { height:46px; gap:14px; }
+	.painter-archive__brand { width:34px; height:46px; }
+	.painter-archive__hamburger { width:30px; gap:6px; }
+	.painter-archive__hamburger i { height:3px; }
+	.painter-archive__toolbar { height:46px; padding:0 11px; gap:10px; }
+	.painter-archive__toolbar a { padding:5px 2px; font-size:11px; font-weight:500; }
+	.painter-archive__view-switch { gap:12px; padding:0; }
+	.painter-archive__view-switch button { width:34px; height:34px; }
+	.painter-view-icon { width:22px; height:22px; }
+	.painter-view-icon--grid { width:6px; height:6px; margin:-9px 0 0 -9px; box-shadow:9px 0 currentColor,0 9px currentColor,9px 9px currentColor; }
+	.painter-archive__actions { gap:15px; }
+	.painter-archive__actions a { font-size:11px; }
+	.painter-archive__art-link { width:86vw; height:44vh; transform:translateY(-5vh) scale(.94); }
+	.painter-archive__scene.is-active .painter-archive__art-link { transform:translateY(-5vh) scale(1); }
+	.painter-archive__wear { right:7vw; bottom:74px; width:23vw; min-width:78px; max-width:112px; }
+	.painter-archive__wear-actions { top:calc(100% + 10px); gap:6px; }
+	.painter-archive__cart-action { min-height:31px; padding:0 10px; font-size:10px; }
+	.painter-archive { --archive-caption-height:150px; }
+	.painter-archive__caption-copy { grid-template-columns:52px minmax(0,1fr) 98px; gap:10px; padding:15px 14px 56px; }
+	.painter-archive__sku { font-size:11px; }
+	.painter-archive__caption h1 { font-size:24px; line-height:1.05; }
+	.painter-archive__caption p { font-size:10px; }
 	.painter-archive__caption .painter-archive__story { display:none; }
 	.painter-archive__size { display:none; }
-	.painter-archive__year { padding-left:8px; }
-	.painter-archive__year strong { font-size:13px; }
+	.painter-archive__year { padding-left:10px; }
+	.painter-archive__year strong { font-size:14px; }
 	.painter-archive__coverflow { z-index:26; top:auto; right:0; bottom:8px; left:0; width:auto; height:44px; transform:none; }
 	.painter-archive__rail { inset:0 10px; height:44px; padding:0; flex-direction:row; justify-content:flex-start; align-items:center; gap:5px; overflow-x:auto; overflow-y:hidden; }
 	.painter-archive__rail button,.painter-archive__rail button.is-active { flex:0 0 42px; width:42px; height:38px; transform:none; }
