@@ -19,7 +19,9 @@ const css = fs.readFileSync(styles, 'utf8');
 
 assert.match(php, /Template Name:\s*Archive Player Preview/);
 assert.strictEqual((data.match(/'sku'\s*=>/g) || []).length, 17, 'expected seventeen products');
+assert.match(php, /if \( ! is_front_page\(\) \) :/);
 assert.match(php, /noindex, nofollow/);
+assert.match(php, /endif;/);
 assert.match(php, /painter-archive__coverflow/);
 assert.match(php, /wc_get_cart_url/);
 assert.strictEqual((php.match(/class="painter-archive__caption"/g) || []).length, 1, 'caption must be a single fixed panel');

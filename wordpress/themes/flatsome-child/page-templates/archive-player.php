@@ -10,17 +10,19 @@ $theme_uri = get_stylesheet_directory_uri();
 $theme_dir = get_stylesheet_directory();
 wp_enqueue_style( 'painter-archive-player', $theme_uri . '/assets/css/archive-player.css', array(), (string) filemtime( $theme_dir . '/assets/css/archive-player.css' ) );
 wp_enqueue_script( 'painter-archive-player', $theme_uri . '/assets/js/archive-player.js', array(), (string) filemtime( $theme_dir . '/assets/js/archive-player.js' ), true );
-add_filter( 'wpseo_robots', static function () { return 'noindex, nofollow'; } );
-add_filter(
-	'wp_robots',
-	static function ( $robots ) {
-		unset( $robots['index'], $robots['follow'] );
-		$robots['noindex']  = true;
-		$robots['nofollow'] = true;
-		return $robots;
-	}
-);
-add_action( 'wp_head', static function () { echo '<meta name="robots" content="noindex, nofollow">' . "\n"; }, 1 );
+if ( ! is_front_page() ) :
+	add_filter( 'wpseo_robots', static function () { return 'noindex, nofollow'; } );
+	add_filter(
+		'wp_robots',
+		static function ( $robots ) {
+			unset( $robots['index'], $robots['follow'] );
+			$robots['noindex']  = true;
+			$robots['nofollow'] = true;
+			return $robots;
+		}
+	);
+	add_action( 'wp_head', static function () { echo '<meta name="robots" content="noindex, nofollow">' . "\n"; }, 1 );
+endif;
 
 $scenes    = require $theme_dir . '/inc/archive-products.php';
 $asset_uri = $theme_uri . '/assets/archive-products/';
