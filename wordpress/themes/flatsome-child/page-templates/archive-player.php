@@ -53,8 +53,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 		</div>
 		<div class="painter-archive__toolbar">
 			<nav class="painter-archive__actions" aria-label="Primary">
-				<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About</a>
-				<a href="mailto:hi@painter.ink">Contact</a>
+				<a href="mailto:hi@painter.ink">Connect</a>
 				<a href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
 			</nav>
 		</div>
@@ -63,6 +62,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
 		<p>PAINTER.INK / WEARABLE ARCHIVE</p>
 		<a href="<?php echo esc_url( home_url( '/about-painter-ink/' ) ); ?>">About Painter.ink</a>
+		<a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>">My Account</a>
 		<a href="<?php echo esc_url( home_url( '/shipping-policy/' ) ); ?>">Shipping Policy</a>
 		<a href="<?php echo esc_url( home_url( '/terms-conditions/' ) ); ?>">Terms &amp; Conditions</a>
 		<a href="<?php echo esc_url( home_url( '/refund-resolution-policy/' ) ); ?>">Refund &amp; Resolution Policy</a>

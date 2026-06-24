@@ -103,7 +103,6 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 	.painter-archive__brand { width:48px; height:42px; }
 	.painter-archive__toolbar { height:42px; padding:0 7px; gap:7px; }
 	.painter-archive__toolbar a { padding:5px 4px; font-size:11px; }
-	.painter-archive__toolbar a:first-of-type { display:none; }
 	.painter-archive__view-switch { gap:10px; padding:0; }
 	.painter-archive__view-switch button { width:38px; height:38px; }
 	.painter-archive__actions { gap:9px; }
