@@ -1,31 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
 :root { --archive-ink:#111; --archive-paper:#f4f3ef; --archive-caption-height:126px; }
-html { scroll-snap-type:y mandatory; }
-html,body.painter-archive-page { margin:0; background:var(--archive-paper); color:var(--archive-ink); overflow-y:auto; overflow-x:hidden; scroll-behavior:smooth; }
+html,body.painter-archive-page { margin:0; background:var(--archive-paper); color:var(--archive-ink); overflow:hidden; }
 html.painter-archive-grid-mode,
 body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:auto; scroll-snap-type:none; }
 .painter-archive-page #wpadminbar { display:none; }
 .painter-archive,.painter-archive * { box-sizing:border-box; }
 .painter-archive { position:relative; min-height:100svh; font-family:'Montserrat',Arial,Helvetica,sans-serif; letter-spacing:0; }
 .painter-archive__chrome { position:fixed; inset:22px 24px auto; z-index:30; display:flex; justify-content:space-between; align-items:flex-start; pointer-events:none; }
-.painter-archive__left-controls,.painter-archive__toolbar { pointer-events:auto; border:1px solid #111; background:rgba(247,246,242,.94); backdrop-filter:blur(12px); }
-.painter-archive__left-controls { display:flex; align-items:center; height:58px; }
-.painter-archive__brand { width:74px; height:58px; padding:0; display:grid; place-items:center; color:#111; cursor:pointer; }
-.painter-archive__hamburger { width:24px; display:grid; gap:5px; }
-.painter-archive__hamburger i { display:block; width:100%; height:2px; background:currentColor; }
+.painter-archive__toolbar { pointer-events:auto; border:1px solid #111; background:rgba(247,246,242,.94); backdrop-filter:blur(12px); }
+.painter-archive__left-controls { pointer-events:auto; display:flex; align-items:center; gap:20px; height:58px; border:0; background:transparent; backdrop-filter:none; }
+.painter-archive__brand { width:48px; height:48px; padding:0; display:grid; place-items:center; border:0; background:transparent; color:#111; cursor:pointer; }
+.painter-archive__hamburger { width:32px; display:grid; gap:7px; }
+.painter-archive__hamburger i { display:block; width:100%; height:3px; background:currentColor; }
 .painter-archive__toolbar { display:flex; align-items:center; height:58px; padding:0 16px; gap:17px; }
-.painter-archive__view-switch { align-self:stretch; display:flex; align-items:center; gap:4px; padding:0 12px; border-left:1px solid #bbb; }
-.painter-archive__view-switch button { width:36px; height:34px; display:grid; place-items:center; padding:0; border:0; background:transparent; color:#777; cursor:pointer; }
-.painter-archive__view-switch button.is-active { color:#00a85a; background:#fff; outline:1px solid currentColor; }
-.painter-view-icon { position:relative; display:block; width:18px; height:18px; }
-.painter-view-icon--single { border:2px solid currentColor; }
-.painter-view-icon--grid { background:currentColor; box-shadow:7px 0 currentColor,0 7px currentColor,7px 7px currentColor; width:5px; height:5px; margin:-7px 0 0 -7px; }
+.painter-archive__view-switch { align-self:stretch; display:flex; align-items:center; gap:20px; padding:0; border:0; }
+.painter-archive__view-switch button { width:48px; height:48px; display:grid; place-items:center; padding:0; border:0; background:transparent; color:#777; cursor:pointer; }
+.painter-archive__view-switch button.is-active { color:#00a85a; background:transparent; outline:0; }
+.painter-view-icon { position:relative; display:block; width:24px; height:24px; }
+.painter-view-icon--single { border:3px solid currentColor; }
+.painter-view-icon--grid { background:currentColor; box-shadow:10px 0 currentColor,0 10px currentColor,10px 10px currentColor; width:7px; height:7px; margin:-10px 0 0 -10px; }
 .painter-archive__actions { display:flex; align-items:center; gap:22px; }
 .painter-archive__actions a { color:inherit; font-size:13px; text-transform:uppercase; text-decoration:none; }
-.painter-archive__viewport { position:relative; overflow:visible; background:#e9e6df; }
-.painter-archive__scene,.painter-archive__shop { position:relative; width:100%; height:calc(100svh - var(--archive-caption-height)); min-height:560px; overflow:hidden; visibility:visible; transform:none; scroll-snap-align:start; scroll-snap-stop:always; }
-.painter-archive__scene.is-active { z-index:3; }
-.painter-archive__scene.is-before,.painter-archive__scene.is-after { z-index:1; }
+.painter-archive__viewport { position:absolute; inset:0 0 var(--archive-caption-height); overflow:hidden; background:#e9e6df; }
+.painter-archive__scene,.painter-archive__shop { position:absolute; inset:0; width:100%; height:100%; min-height:0; overflow:hidden; visibility:hidden; transform:translateY(100%); transition:transform 560ms cubic-bezier(.76,0,.24,1); will-change:transform; }
+.painter-archive__scene.is-active { z-index:3; visibility:visible; transform:translateY(0); }
+.painter-archive__scene.is-before { z-index:1; visibility:visible; transform:translateY(-100%); }
+.painter-archive__scene.is-after { z-index:1; visibility:visible; transform:translateY(100%); }
+.painter-archive__scene.is-entering { z-index:4; visibility:visible; transform:translateY(0); }
+.painter-archive__scene.is-leaving-up { z-index:3; visibility:visible; transform:translateY(-100%); }
+.painter-archive__scene.is-leaving-down { z-index:3; visibility:visible; transform:translateY(100%); }
 .painter-archive__visual { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(92deg,rgba(255,255,255,.38),rgba(221,217,208,.22)),repeating-linear-gradient(90deg,rgba(90,77,57,.025) 0,rgba(90,77,57,.025) 1px,transparent 1px,transparent 7px),#e9e6df; }
 .painter-archive__art-link { display:block; width:min(54vw,820px); height:min(70vh,700px); transform:translateX(-8vw) scale(.94); transition:transform 680ms cubic-bezier(.2,.8,.2,1); }
 .painter-archive__art { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 15px 14px rgba(43,35,24,.2)); }
@@ -62,6 +65,7 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 .painter-archive__menu button { align-self:flex-end; border:0; background:none; color:#fff; font-size:36px; cursor:pointer; }
 .painter-archive__menu p { margin:0 0 42px; font-size:11px; letter-spacing:.13em; }
 .painter-archive__menu a { padding:16px 0; border-top:1px solid #555; color:#fff; text-decoration:none; }
+.painter-archive__menu a:hover { color:#fff; background:transparent; }
 .painter-archive__shop { display:flex; flex-direction:column; align-items:center; justify-content:center; background:#111; color:#fff; text-align:center; }
 .painter-archive__shop p { font-size:12px; text-transform:uppercase; }
 .painter-archive__shop h2 { margin:8px 0 42px; font-size:clamp(52px,9vw,150px); font-weight:500; line-height:.9; }
@@ -100,8 +104,8 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 	.painter-archive__toolbar { height:42px; padding:0 7px; gap:7px; }
 	.painter-archive__toolbar a { padding:5px 4px; font-size:11px; }
 	.painter-archive__toolbar a:first-of-type { display:none; }
-	.painter-archive__view-switch { padding:0 7px; }
-	.painter-archive__view-switch button { width:31px; height:30px; }
+	.painter-archive__view-switch { gap:10px; padding:0; }
+	.painter-archive__view-switch button { width:38px; height:38px; }
 	.painter-archive__actions { gap:9px; }
 	.painter-archive__actions a { font-size:9px; }
 	.painter-archive__art-link { width:88vw; height:53vh; transform:translateY(-6vh) scale(.94); }
@@ -110,7 +114,6 @@ body.painter-archive-page.painter-archive-grid-mode { height:auto; overflow-y:au
 	.painter-archive__wear-actions { top:calc(100% + 8px); gap:5px; }
 	.painter-archive__cart-action { min-height:27px; padding:0 8px; font-size:9px; }
 	.painter-archive { --archive-caption-height:158px; }
-	.painter-archive__scene,.painter-archive__shop { min-height:620px; }
 	.painter-archive__caption-copy { grid-template-columns:54px 1fr auto; gap:10px; padding:12px 12px 58px; }
 	.painter-archive__sku { font-size:10px; }
 	.painter-archive__caption h1 { font-size:21px; }

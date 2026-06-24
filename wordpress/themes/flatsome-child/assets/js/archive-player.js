@@ -23,9 +23,11 @@
 	var toggle = root.querySelector('[data-menu-toggle]');
 	var close = root.querySelector('[data-menu-close]');
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	var visualDuration = reducedMotion ? 0 : 560;
 	var captionWipeDuration = reducedMotion ? 0 : 180;
 	var active = 0;
-	var ticking = false;
+	var transitioning = false;
+	var cooldownUntil = 0;
 	var viewMode = 'player';
 
 	function sceneData(index) {
@@ -80,54 +82,58 @@
 
 	function normalizeScenes() {
 		scenes.forEach(function (scene, index) {
-			scene.classList.toggle('is-active', index === active);
-			scene.classList.toggle('is-before', index < active);
-			scene.classList.toggle('is-after', index > active);
+			scene.classList.remove('is-active', 'is-before', 'is-after', 'is-entering', 'is-leaving-up', 'is-leaving-down');
+			scene.classList.add(index < active ? 'is-before' : index > active ? 'is-after' : 'is-active');
 		});
 	}
 
-	function setActive(index, withCaption) {
-		index = Math.max(0, Math.min(index, scenes.length - 1));
-		if (index === active) return;
-		active = index;
+	function finishVisualTransition(target) {
+		active = target;
+		transitioning = false;
 		normalizeScenes();
 		updateButtons(active);
-		if (withCaption !== false) updateCaption(active);
+		updateCaption(active);
 	}
 
-	function nearestSceneIndex() {
-		var targetLine = window.innerHeight * 0.42;
-		var closest = active;
-		var closestDistance = Infinity;
-		scenes.forEach(function (scene, index) {
-			var rect = scene.getBoundingClientRect();
-			var distance = Math.abs(rect.top - targetLine);
-			if (distance < closestDistance) {
-				closest = index;
-				closestDistance = distance;
-			}
-		});
-		return closest;
+	function changeScene(target) {
+		target = Math.max(0, Math.min(target, scenes.length - 1));
+		if (transitioning || target === active) return false;
+
+		var current = active;
+		var direction = target > current ? 1 : -1;
+		var currentScene = scenes[current];
+		var targetScene = scenes[target];
+		transitioning = true;
+		updateButtons(target);
+
+		targetScene.classList.remove('is-before', 'is-after');
+		targetScene.classList.add(direction > 0 ? 'is-after' : 'is-before');
+		void targetScene.offsetWidth;
+		targetScene.classList.add('is-entering');
+		currentScene.classList.add(direction > 0 ? 'is-leaving-up' : 'is-leaving-down');
+
+		window.setTimeout(function () {
+			finishVisualTransition(target);
+		}, visualDuration);
+		return true;
 	}
 
-	function scheduleActiveFromScroll() {
-		if (viewMode !== 'player' || ticking) return;
-		ticking = true;
-		window.requestAnimationFrame(function () {
-			ticking = false;
-			setActive(nearestSceneIndex());
-		});
+	function registerWheelGesture(event) {
+		if (viewMode !== 'player' || menu.classList.contains('is-open')) return;
+		if (Math.abs(event.deltaY) < 10) return;
+		event.preventDefault();
+
+		if (transitioning || Date.now() < cooldownUntil) return;
+		if (changeScene(active + (event.deltaY > 0 ? 1 : -1))) {
+			cooldownUntil = Date.now() + visualDuration + 70;
+		}
 	}
 
-	function scrollToScene(index) {
-		index = Math.max(0, Math.min(index, scenes.length - 1));
-		scenes[index].scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
-		setActive(index);
-	}
+	document.addEventListener('wheel', registerWheelGesture, { passive: false, capture: true });
 
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
-			scrollToScene(Number(button.getAttribute('data-scene-target')));
+			changeScene(Number(button.getAttribute('data-scene-target')));
 		});
 	});
 
@@ -142,11 +148,9 @@
 			button.classList.toggle('is-active', selected);
 			button.setAttribute('aria-pressed', selected ? 'true' : 'false');
 		});
-		if (viewMode === 'grid') {
-			window.scrollTo({ top: 0, behavior: 'auto' });
-		} else {
-			scrollToScene(active);
-		}
+		transitioning = false;
+		cooldownUntil = 0;
+		if (viewMode === 'grid') window.scrollTo(0, 0);
 	}
 
 	viewButtons.forEach(function (button) {
@@ -166,11 +170,13 @@
 	document.addEventListener('keydown', function (event) {
 		if (event.key === 'Escape') toggleMenu(false);
 		if (viewMode !== 'player') return;
-		if (event.key === 'ArrowDown') scrollToScene(active + 1);
-		if (event.key === 'ArrowUp') scrollToScene(active - 1);
+		if (event.key === 'ArrowDown') changeScene(active + 1);
+		if (event.key === 'ArrowUp') changeScene(active - 1);
 	});
-	window.addEventListener('scroll', scheduleActiveFromScroll, { passive: true });
-	window.addEventListener('resize', scheduleActiveFromScroll, { passive: true });
+	window.addEventListener('blur', function () {
+		transitioning = false;
+		cooldownUntil = 0;
+	}, { passive: true });
 
 	normalizeScenes();
 	updateButtons(0);
