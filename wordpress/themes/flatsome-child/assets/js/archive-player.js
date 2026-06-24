@@ -24,8 +24,8 @@
 	var toggle = root.querySelector('[data-menu-toggle]');
 	var close = root.querySelector('[data-menu-close]');
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-	var visualDuration = reducedMotion ? 0 : 780;
-	var captionWipeDuration = reducedMotion ? 0 : 230;
+	var visualDuration = reducedMotion ? 0 : 560;
+	var captionWipeDuration = reducedMotion ? 0 : 180;
 	var active = 0;
 	var transitioning = false;
 	var wheelGestureActive = false;
@@ -134,10 +134,11 @@
 
 	function registerWheelGesture(event) {
 		if (viewMode !== 'player') return;
+		if (menu.classList.contains('is-open')) return;
 		event.preventDefault();
 		wheelReleasePending = false;
 		window.clearTimeout(wheelReleaseTimer);
-		wheelReleaseTimer = window.setTimeout(releaseWheelGesture, 220);
+		wheelReleaseTimer = window.setTimeout(releaseWheelGesture, 140);
 
 		if (wheelGestureActive || transitioning || Math.abs(event.deltaY) < 12) return;
 		if (changeScene(active + (event.deltaY > 0 ? 1 : -1))) {
@@ -145,7 +146,7 @@
 		}
 	}
 
-	root.addEventListener('wheel', registerWheelGesture, { passive: false });
+	window.addEventListener('wheel', registerWheelGesture, { passive: false });
 	root.addEventListener('touchstart', function (event) {
 		if (viewMode !== 'player') return;
 		touchStart = event.touches[0].clientY;

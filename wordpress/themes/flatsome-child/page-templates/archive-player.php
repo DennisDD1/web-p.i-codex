@@ -29,6 +29,7 @@ foreach ( $scenes as &$scene ) {
 	$scene['art']     = $asset_uri . $asset_name . '-1.' . ( 'PTI-013' === $scene['sku'] ? 'png' : 'jpg' );
 	$scene['wear']    = $asset_uri . $asset_name . '-2.png';
 	$scene['product'] = home_url( $scene['product'] );
+	$scene['id']      = url_to_postid( $scene['product'] );
 }
 unset( $scene );
 $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url( '/cart/' );
@@ -80,10 +81,25 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 				style="--scene-accent:<?php echo esc_attr( $scene['accent'] ); ?>"
 			>
 				<div class="painter-archive__visual">
-					<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
-					<a class="painter-archive__wear<?php echo 'PTI-013' === $scene['sku'] ? ' is-single-image' : ''; ?>" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
-						<img src="<?php echo esc_url( $scene['wear'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> temporary tattoo on skin" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>">
+					<a class="painter-archive__art-link" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="View <?php echo esc_attr( $scene['title'] ); ?>">
+						<img class="painter-archive__art" src="<?php echo esc_url( $scene['art'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> original artwork" <?php echo 0 === $index ? 'fetchpriority="high"' : 'loading="lazy"'; ?>>
 					</a>
+					<div class="painter-archive__wear<?php echo 'PTI-013' === $scene['sku'] ? ' is-single-image' : ''; ?>">
+						<a class="painter-archive__wear-image" href="<?php echo esc_url( $scene['product'] ); ?>" aria-label="Shop <?php echo esc_attr( $scene['title'] ); ?>">
+							<img src="<?php echo esc_url( $scene['wear'] ); ?>" alt="<?php echo esc_attr( $scene['title'] ); ?> temporary tattoo on skin" loading="<?php echo 0 === $index ? 'eager' : 'lazy'; ?>">
+						</a>
+						<div class="painter-archive__wear-actions">
+							<a
+								data-add-cart
+								class="painter-archive__cart-action add_to_cart_button ajax_add_to_cart"
+								href="<?php echo esc_url( $scene['id'] ? add_query_arg( 'add-to-cart', absint( $scene['id'] ), home_url( '/' ) ) : $scene['product'] ); ?>"
+								data-product_id="<?php echo esc_attr( $scene['id'] ); ?>"
+								data-quantity="1"
+								rel="nofollow"
+							>Add to cart</a>
+							<a class="painter-archive__cart-action is-secondary" href="<?php echo esc_url( $cart_url ); ?>">View cart</a>
+						</div>
+					</div>
 				</div>
 			</section>
 		<?php endforeach; ?>
