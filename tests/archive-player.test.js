@@ -47,6 +47,8 @@ assert.doesNotMatch(php, /Historic images, restored for real skin\./);
 assert.match(php, /painter-archive__art-link/);
 assert.doesNotMatch(php, /is-single-image/);
 assert.match(php, /data-add-cart/);
+assert.match(php, /add_query_arg\( 'add-to-cart', absint\( \$scene\['id'\] \), \$cart_url \)/);
+assert.doesNotMatch(php, /add_query_arg\( 'add-to-cart', absint\( \$scene\['id'\] \), home_url\( '\/' \) \)/);
 assert.match(php, /Add to cart/);
 assert.match(php, /View cart/);
 assert.doesNotMatch(php, /painter-archive__rail[^]*painter-archive__number/);

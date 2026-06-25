@@ -95,7 +95,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 							<a
 								data-add-cart
 								class="painter-archive__cart-action add_to_cart_button ajax_add_to_cart"
-								href="<?php echo esc_url( $scene['id'] ? add_query_arg( 'add-to-cart', absint( $scene['id'] ), home_url( '/' ) ) : $scene['product'] ); ?>"
+								href="<?php echo esc_url( $scene['id'] ? add_query_arg( 'add-to-cart', absint( $scene['id'] ), $cart_url ) : $scene['product'] ); ?>"
 								data-product_id="<?php echo esc_attr( $scene['id'] ); ?>"
 								data-quantity="1"
 								rel="nofollow"
