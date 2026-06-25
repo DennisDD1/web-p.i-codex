@@ -30,6 +30,7 @@
 	var transitioning = false;
 	var cooldownUntil = 0;
 	var viewMode = 'player';
+	var touchStart = null;
 
 	function sceneData(index) {
 		var scene = scenes[index];
@@ -131,6 +132,59 @@
 	}
 
 	document.addEventListener('wheel', registerWheelGesture, { passive: false, capture: true });
+
+	function isInteractiveTouchTarget(target) {
+		return !!(target && target.closest('.painter-archive__chrome, .painter-archive__menu, .painter-archive__coverflow, .painter-archive__wear-actions'));
+	}
+
+	function registerTouchStart(event) {
+		if (viewMode !== 'player' || menu.classList.contains('is-open') || isInteractiveTouchTarget(event.target)) {
+			touchStart = null;
+			return;
+		}
+		var touch = event.touches && event.touches[0];
+		if (!touch) return;
+		touchStart = {
+			x: touch.clientX,
+			y: touch.clientY,
+			time: Date.now()
+		};
+	}
+
+	function registerTouchMove(event) {
+		if (!touchStart || viewMode !== 'player') return;
+		var touch = event.touches && event.touches[0];
+		if (!touch) return;
+		var deltaX = touch.clientX - touchStart.x;
+		var deltaY = touch.clientY - touchStart.y;
+		if (Math.abs(deltaY) > 12 && Math.abs(deltaY) > Math.abs(deltaX) * 1.15) {
+			event.preventDefault();
+		}
+	}
+
+	function registerTouchEnd(event) {
+		if (!touchStart || viewMode !== 'player' || menu.classList.contains('is-open')) {
+			touchStart = null;
+			return;
+		}
+		var touch = event.changedTouches && event.changedTouches[0];
+		if (!touch) {
+			touchStart = null;
+			return;
+		}
+		var deltaX = touch.clientX - touchStart.x;
+		var deltaY = touch.clientY - touchStart.y;
+		touchStart = null;
+		if (Math.abs(deltaY) < 48 || Math.abs(deltaY) < Math.abs(deltaX) * 1.15) return;
+		if (transitioning || Date.now() < cooldownUntil) return;
+		if (changeScene(active + (deltaY < 0 ? 1 : -1))) {
+			cooldownUntil = Date.now() + visualDuration + 70;
+		}
+	}
+
+	document.addEventListener('touchstart', registerTouchStart, { passive: true, capture: true });
+	document.addEventListener('touchmove', registerTouchMove, { passive: false, capture: true });
+	document.addEventListener('touchend', registerTouchEnd, { passive: true, capture: true });
 
 	buttons.forEach(function (button) {
 		button.addEventListener('click', function () {
