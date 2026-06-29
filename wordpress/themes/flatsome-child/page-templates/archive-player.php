@@ -54,12 +54,21 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 			</div>
 		</div>
 		<div class="painter-archive__toolbar">
-			<nav class="painter-archive__actions" aria-label="Primary">
-				<a href="#" data-mailto-trigger data-mailto-user="hi" data-mailto-domain="painter.ink">Connect</a>
-				<a href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
+			<nav class="painter-archive__actions painter-archive__site-nav" aria-label="Primary">
+				<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop</a>
+				<a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>">My Account</a>
+				<a class="is-essential" href="#" data-mailto-trigger data-mailto-user="hi" data-mailto-domain="painter.ink">Connect</a>
+				<a class="is-essential" href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
 			</nav>
 		</div>
 	</header>
+	<aside class="painter-archive__offer" data-archive-offer role="dialog" aria-label="Current offer">
+		<button class="painter-archive__offer-close" type="button" data-offer-close aria-label="Close offer">&times;</button>
+		<p>Current offer</p>
+		<strong>Sitewide 50% off</strong>
+		<span>Free shipping over $6.98</span>
+		<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop motifs</a>
+	</aside>
 	<aside id="archive-menu" class="painter-archive__menu" aria-hidden="true">
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
 		<p>PAINTER.INK / WEARABLE ARCHIVE</p>

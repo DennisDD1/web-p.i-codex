@@ -22,6 +22,8 @@
 	var menu = root.querySelector('.painter-archive__menu');
 	var toggle = root.querySelector('[data-menu-toggle]');
 	var close = root.querySelector('[data-menu-close]');
+	var offer = root.querySelector('[data-archive-offer]');
+	var offerClose = root.querySelector('[data-offer-close]');
 	var mailtoLinks = Array.prototype.slice.call(root.querySelectorAll('[data-mailto-trigger]'));
 	var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 	var visualDuration = reducedMotion ? 0 : 560;
@@ -222,6 +224,14 @@
 
 	toggle.addEventListener('click', function () { toggleMenu(!menu.classList.contains('is-open')); });
 	close.addEventListener('click', function () { toggleMenu(false); });
+	if (offer && offerClose) {
+		offerClose.addEventListener('click', function () {
+			offer.classList.add('is-hidden');
+			window.setTimeout(function () {
+				offer.classList.remove('is-hidden');
+			}, 60000);
+		});
+	}
 	mailtoLinks.forEach(function (link) {
 		link.addEventListener('click', function (event) {
 			event.preventDefault();
