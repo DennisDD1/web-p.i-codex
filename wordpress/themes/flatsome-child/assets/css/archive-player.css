@@ -137,7 +137,7 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 	.painter-archive__site-nav a { padding:0 5px; }
 	.painter-archive__art-link { width:78vw; height:39vh; transform:translate(-6vw,4vh) scale(.94); }
 	.painter-archive__scene.is-active .painter-archive__art-link { transform:translate(-6vw,4vh) scale(1); }
-	.painter-archive__wear { right:5vw; bottom:54px; width:23vw; min-width:84px; max-width:112px; padding:11px; }
+	.painter-archive__wear { right:5vw; bottom:54px; width:23vw; min-width:84px; max-width:112px; padding:8px; border:1px solid rgba(17,17,17,.14); background:#fff; box-shadow:0 12px 24px rgba(43,35,24,.16); }
 	.painter-archive__wear-actions { left:auto; right:0; top:calc(100% + 10px); gap:6px; transform:none; }
 	.painter-archive__cart-action { min-height:31px; padding:0 10px; font-size:10px; }
 	.painter-archive { --archive-caption-height:150px; }
