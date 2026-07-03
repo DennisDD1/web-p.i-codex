@@ -57,7 +57,6 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 			<nav class="painter-archive__actions painter-archive__site-nav" aria-label="Primary">
 				<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop</a>
 				<a href="<?php echo esc_url( home_url( '/my-account/' ) ); ?>">My Account</a>
-				<a class="is-essential" href="#" data-mailto-trigger data-mailto-user="hi" data-mailto-domain="painter.ink">Connect</a>
 				<a class="is-essential" href="<?php echo esc_url( $cart_url ); ?>">Cart</a>
 			</nav>
 		</div>
