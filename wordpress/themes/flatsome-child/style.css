@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.32
+Version: 3.0.33
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -589,9 +589,9 @@ Version: 3.0.32
 	padding: 17px 50px 17px 18px;
 	border: 1px solid rgba(255, 255, 255, 0.28);
 	border-radius: 8px;
-	background: rgba(0, 0, 0, 0.78);
-	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3);
-	color: #fff;
+	background: rgba(0, 0, 0, 0.78) !important;
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.3) !important;
+	color: #fff !important;
 	font-size: 13px;
 	letter-spacing: 0.02em;
 	backdrop-filter: blur(14px);

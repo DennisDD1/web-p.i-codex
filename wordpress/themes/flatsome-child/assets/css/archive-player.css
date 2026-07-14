@@ -12,9 +12,9 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive__chrome { position:fixed; inset:22px 24px auto; z-index:30; display:flex; justify-content:space-between; align-items:flex-start; pointer-events:none; }
 .painter-archive__toolbar { pointer-events:auto; border:1px solid #111; background:rgba(247,246,242,.94); backdrop-filter:blur(12px); }
 .painter-archive__left-controls { pointer-events:auto; display:flex; align-items:center; gap:20px; height:58px; border:0; background:transparent; backdrop-filter:none; }
-.painter-archive__brand { width:48px; height:48px; padding:0; display:grid; place-items:center; border:0; background:transparent; color:#111; cursor:pointer; }
-.painter-archive__hamburger { width:32px; display:grid; gap:7px; }
-.painter-archive__hamburger i { display:block; width:100%; height:3px; background:currentColor; }
+.painter-archive__brand { width:38px; height:42px; padding:0; display:grid; place-items:center; border:0; background:transparent; color:#111; cursor:pointer; }
+.painter-archive__hamburger { width:24px; display:grid; gap:5px; }
+.painter-archive__hamburger i { display:block; width:100%; height:2px; background:currentColor; }
 .painter-archive__toolbar { display:flex; align-items:center; height:58px; padding:0 16px; gap:17px; }
 .painter-archive__view-switch { align-self:stretch; display:flex; align-items:center; gap:20px; padding:0; border:0; }
 .painter-archive__view-switch button { width:48px; height:48px; display:grid; place-items:center; padding:0; border:0; background:transparent; color:#777; cursor:pointer; }
@@ -93,7 +93,7 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive[data-current-view="grid"] .painter-archive__grid-view { display:block; }
 .painter-archive__grid-head { display:flex; justify-content:space-between; align-items:flex-end; margin:0 0 42px; padding-bottom:18px; border-bottom:1px solid #aaa; }
 .painter-archive__grid-head p { margin:0; font-size:11px; text-transform:uppercase; }
-.painter-archive__grid-head h1 { margin:0; font-size:clamp(38px,6vw,84px); font-weight:500; line-height:.9; }
+.painter-archive__grid-head h1 { margin:0; font-size:clamp(28px,3.6vw,52px); font-weight:600; line-height:.98; letter-spacing:.02em; text-transform:uppercase; }
 .painter-archive__masonry { column-count:4; column-gap:18px; }
 .painter-archive__product-card { display:inline-block; width:100%; margin:0 0 30px; break-inside:avoid; color:#111; text-decoration:none; }
 .painter-archive__product-image { position:relative; overflow:hidden; background:transparent; box-shadow:0 10px 24px rgba(48,40,28,.12); }
@@ -115,9 +115,9 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 @media (max-width:767px) {
 	.painter-archive__chrome { inset:10px 12px auto; align-items:center; }
 	.painter-archive__left-controls { height:46px; gap:14px; }
-	.painter-archive__brand { width:34px; height:46px; }
-	.painter-archive__hamburger { width:30px; gap:6px; }
-	.painter-archive__hamburger i { height:3px; }
+	.painter-archive__brand { width:32px; height:40px; }
+	.painter-archive__hamburger { width:24px; gap:5px; }
+	.painter-archive__hamburger i { height:2px; }
 	.painter-archive__toolbar { height:46px; padding:0 11px; gap:10px; }
 	.painter-archive__toolbar a { padding:5px 2px; font-size:11px; font-weight:500; }
 	.painter-archive__view-switch { gap:12px; padding:0; }
@@ -155,7 +155,7 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 	.painter-archive__rail button.is-active { border:2px solid #111; }
 	.painter-archive__grid-view { padding:96px 14px 54px; }
 	.painter-archive__grid-head { display:block; }
-	.painter-archive__grid-head h1 { margin-top:10px; }
+	.painter-archive__grid-head h1 { margin-top:10px; font-size:34px; }
 	.painter-archive__masonry { column-count:2; column-gap:12px; }
 	.painter-archive__product-card { margin-bottom:22px; }
 	.painter-archive__product-card h2 { font-size:15px; }

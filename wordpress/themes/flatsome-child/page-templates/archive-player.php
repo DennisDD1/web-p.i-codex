@@ -156,7 +156,7 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 	<section class="painter-archive__grid-view" data-grid-view aria-label="All products">
 		<div class="painter-archive__grid-head">
 			<p>painter.ink archive</p>
-			<h1>All 17 Motifs</h1>
+			<h1>Motif Index</h1>
 		</div>
 		<div class="painter-archive__masonry">
 			<?php foreach ( $scenes as $scene ) : ?>
