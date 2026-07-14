@@ -218,7 +218,7 @@ add_action( 'wp_footer', function () {
 		function hideLegacyPromotionSections() {
 			document.querySelectorAll('section').forEach(function (section) {
 				var text = section.textContent || '';
-				if (text.indexOf('30% OFF SITEWIDE') !== -1 && text.indexOf('Latest Promotions') !== -1) {
+				if ((text.indexOf('30% OFF SITEWIDE') !== -1 || text.indexOf('50% OFF SITEWIDE') !== -1 || text.indexOf('70% OFF SITEWIDE') !== -1) && text.indexOf('Latest Promotions') !== -1) {
 					section.classList.add('painter-legacy-promo-hidden');
 				}
 			});
@@ -253,15 +253,16 @@ add_action( 'wp_footer', function () {
 }, 30 );
 
 add_action( 'wp_body_open', function () {
-	if ( is_cart() || is_checkout() || is_account_page() ) {
+	if ( is_front_page() || is_page_template( 'page-templates/archive-player.php' ) || is_cart() || is_checkout() || is_account_page() ) {
 		return;
 	}
 	?>
-	<div class="painter-offer-bar" role="note" aria-label="Current offer">
-		<button class="painter-offer-close" type="button" aria-label="Close offer notice">×</button>
-		<span>Sitewide 30% off</span>
-		<strong>Free shipping over $11.98</strong>
-	</div>
+		<div class="painter-offer-bar" role="note" aria-label="Current offer">
+			<button class="painter-offer-close" type="button" aria-label="Close offer notice">×</button>
+			<span>New Arrival Sale</span>
+			<strong>70% Off Sitewide</strong>
+			<em>Free shipping over $4.89</em>
+		</div>
 	<script>
 	(function () {
 		var notice = document.querySelector('.painter-offer-bar');
@@ -284,6 +285,51 @@ add_action( 'wp_body_open', function () {
 	</script>
 	<?php
 } );
+
+add_action( 'wp_footer', function () {
+	if ( ! is_cart() ) {
+		return;
+	}
+	?>
+	<script>
+	(function ($) {
+		if (!$ || !document.body.classList.contains('woocommerce-cart')) return;
+
+		var timer = null;
+		var isSubmitting = false;
+
+		function scheduleCartUpdate() {
+			if (isSubmitting) return;
+
+			window.clearTimeout(timer);
+			timer = window.setTimeout(function () {
+				var form = document.querySelector('form.woocommerce-cart-form');
+				if (!form) return;
+
+				var button = form.querySelector('button[name="update_cart"]');
+				if (!button) return;
+
+				isSubmitting = true;
+				button.disabled = false;
+				button.removeAttribute('disabled');
+				button.click();
+				window.setTimeout(function () {
+					isSubmitting = false;
+				}, 4000);
+			}, 650);
+		}
+
+		$(document).on('input change', 'form.woocommerce-cart-form input.qty', scheduleCartUpdate);
+		$(document).on('click', 'form.woocommerce-cart-form .quantity .plus, form.woocommerce-cart-form .quantity .minus, form.woocommerce-cart-form .quantity button', function () {
+			window.setTimeout(scheduleCartUpdate, 120);
+		});
+		$(document.body).on('updated_cart_totals wc_fragments_refreshed', function () {
+			isSubmitting = false;
+		});
+	})(window.jQuery);
+	</script>
+	<?php
+}, 40 );
 
 add_action( 'wp_footer', function () {
 	?>

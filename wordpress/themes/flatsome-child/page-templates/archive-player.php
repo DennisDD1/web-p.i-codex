@@ -74,10 +74,10 @@ $cart_url = function_exists( 'wc_get_cart_url' ) ? wc_get_cart_url() : home_url(
 	</header>
 	<aside class="painter-archive__offer" data-archive-offer role="dialog" aria-label="Current offer">
 		<button class="painter-archive__offer-close" type="button" data-offer-close aria-label="Close offer">&times;</button>
-		<p>Current offer</p>
-		<strong>Sitewide 50% off</strong>
-		<span>Free shipping over $6.98</span>
-		<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop motifs</a>
+		<p>New Arrival Sale</p>
+		<strong>70% Off Sitewide</strong>
+		<span>Free shipping over $4.89</span>
+		<a href="<?php echo esc_url( home_url( '/shop/' ) ); ?>">Shop new arrivals</a>
 	</aside>
 	<aside id="archive-menu" class="painter-archive__menu" aria-hidden="true">
 		<button type="button" data-menu-close aria-label="Close menu">&times;</button>
