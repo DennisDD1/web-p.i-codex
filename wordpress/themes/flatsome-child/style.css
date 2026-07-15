@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.34
+Version: 3.0.35
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -1346,10 +1346,10 @@ Version: 3.0.34
 }
 
 .painter-offer-bar {
-	width: 310px !important;
+	width: 286px !important;
 	max-width: calc(100vw - 36px);
-	min-height: 132px;
-	padding: 18px 54px 18px 20px !important;
+	min-height: 128px;
+	padding: 18px 46px 18px 20px !important;
 	border-radius: 10px;
 	background: rgba(0, 0, 0, 0.82) !important;
 	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28) !important;
@@ -1360,13 +1360,14 @@ Version: 3.0.34
 	padding: 0;
 	border: 0;
 	background: transparent;
-	font-size: 11px;
-	letter-spacing: 0.14em;
+	font-size: 10px;
+	letter-spacing: 0.15em;
 }
 
 .painter-offer-bar strong {
-	max-width: 210px;
-	font-size: 26px;
+	max-width: 190px;
+	margin-bottom: 11px;
+	font-size: 25px;
 	line-height: 0.98;
 	letter-spacing: 0.01em;
 	text-transform: uppercase;
@@ -1378,16 +1379,16 @@ Version: 3.0.34
 }
 
 .painter-offer-close {
-	top: 14px;
-	right: 14px;
-	width: 34px;
-	min-width: 34px;
-	max-width: 34px;
-	height: 34px;
-	min-height: 34px;
-	max-height: 34px;
+	top: 13px;
+	right: 13px;
+	width: 32px;
+	min-width: 32px;
+	max-width: 32px;
+	height: 32px;
+	min-height: 32px;
+	max-height: 32px;
 	background: rgba(255, 255, 255, 0.2);
-	font-size: 28px;
+	font-size: 27px;
 }
 
 @media only screen and (max-width: 48em) {
@@ -1412,7 +1413,7 @@ Version: 3.0.34
 		bottom: 14px;
 		width: auto !important;
 		min-height: 106px;
-		padding: 15px 52px 15px 16px !important;
+		padding: 15px 45px 15px 16px !important;
 	}
 
 	.painter-offer-bar span {

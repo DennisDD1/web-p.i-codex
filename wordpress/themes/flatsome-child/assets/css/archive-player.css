@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap');
-:root { --archive-ink:#111; --archive-paper:#f4d76a; --archive-caption-height:126px; }
+:root { --archive-ink:#111; --archive-paper:#f1efea; --archive-caption-height:126px; }
 html { margin-top:0!important; }
 html,body.painter-archive-page { margin:0; background:var(--archive-paper); color:var(--archive-ink); overflow:hidden; }
 html.painter-archive-grid-mode,
@@ -27,16 +27,16 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive__site-nav { display:flex; align-items:center; height:58px; gap:0; background:rgba(247,246,242,.96); }
 .painter-archive__site-nav a { display:inline-flex; align-items:center; align-self:stretch; padding:0 7px; color:#333; font-weight:500; letter-spacing:.01em; }
 .painter-archive__site-nav a:hover,.painter-archive__site-nav a:focus { color:#111; background:rgba(255,255,255,.72); outline:0; }
-.painter-archive__offer { position:fixed; z-index:29; left:28px; bottom:calc(var(--archive-caption-height) + 24px); width:310px; max-width:calc(100vw - 56px); min-height:132px; padding:18px 54px 18px 20px; border:1px solid rgba(255,255,255,.28); border-radius:10px; background:rgba(0,0,0,.82); color:#fff; box-shadow:0 18px 42px rgba(0,0,0,.28); transform:translate3d(0,0,0); backdrop-filter:blur(14px); transition:opacity 220ms ease, transform 220ms ease; }
+.painter-archive__offer { position:fixed; z-index:29; left:28px; bottom:calc(var(--archive-caption-height) + 24px); width:286px; max-width:calc(100vw - 56px); min-height:128px; padding:18px 46px 18px 20px; border:1px solid rgba(255,255,255,.28); border-radius:10px; background:rgba(0,0,0,.82); color:#fff; box-shadow:0 18px 42px rgba(0,0,0,.28); transform:translate3d(0,0,0); backdrop-filter:blur(14px); transition:opacity 220ms ease, transform 220ms ease; }
 .painter-archive__offer.is-hidden { opacity:0; pointer-events:none; transform:translate3d(0,14px,0); }
-.painter-archive__offer p { margin:0 0 10px; font-size:11px; font-weight:800; letter-spacing:.14em; line-height:1.1; text-transform:uppercase; opacity:.8; }
-.painter-archive__offer strong { display:block; max-width:210px; margin:0 0 8px; font-size:26px; line-height:.98; font-weight:800; letter-spacing:.01em; text-transform:uppercase; }
-.painter-archive__offer span { display:block; margin:0 0 0; font-size:14px; line-height:1.2; font-weight:700; }
-.painter-archive__offer a { display:inline-flex; align-items:center; min-height:32px; padding:0 13px; border:1px solid rgba(255,255,255,.7); border-radius:999px; color:#fff; font-size:11px; font-weight:800; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
+.painter-archive__offer p { margin:0 0 11px; font-size:10px; font-weight:800; letter-spacing:.15em; line-height:1.1; text-transform:uppercase; opacity:.8; }
+.painter-archive__offer strong { display:block; max-width:190px; margin:0 0 11px; font-size:25px; line-height:.98; font-weight:800; letter-spacing:.01em; text-transform:uppercase; }
+.painter-archive__offer span { display:block; margin:0 0 11px; font-size:13px; line-height:1.2; font-weight:700; }
+.painter-archive__offer a { display:inline-flex; align-items:center; min-height:30px; padding:0 12px; border:1px solid rgba(255,255,255,.7); border-radius:999px; color:#fff; font-size:10px; font-weight:800; letter-spacing:.08em; text-decoration:none; text-transform:uppercase; }
 .painter-archive__offer a:hover { background:#fff; color:#111; }
-.painter-archive__offer-close { position:absolute; z-index:2; top:14px; right:14px; width:34px; min-width:34px; height:34px; min-height:34px; display:grid; place-items:center; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.2); color:#fff; font-size:28px; line-height:1; cursor:pointer; }
+.painter-archive__offer-close { position:absolute; z-index:2; top:13px; right:13px; width:32px; min-width:32px; height:32px; min-height:32px; display:grid; place-items:center; padding:0; border:0; border-radius:50%; background:rgba(255,255,255,.2); color:#fff; font-size:27px; line-height:1; cursor:pointer; }
 .painter-archive__offer-close:hover,.painter-archive__offer-close:focus { background:rgba(255,255,255,.34); outline:0; }
-.painter-archive__viewport { position:absolute; inset:0 0 var(--archive-caption-height); overflow:hidden; background:#f4d76a; touch-action:none; }
+.painter-archive__viewport { position:absolute; inset:0 0 var(--archive-caption-height); overflow:hidden; background:#f1efea; touch-action:none; }
 .painter-archive__scene,.painter-archive__shop { position:absolute; inset:0; width:100%; height:100%; min-height:0; overflow:hidden; visibility:hidden; transform:translateY(100%); transition:transform 560ms cubic-bezier(.76,0,.24,1); will-change:transform; }
 .painter-archive__scene.is-active { z-index:3; visibility:visible; transform:translateY(0); }
 .painter-archive__scene.is-before { z-index:1; visibility:visible; transform:translateY(-100%); }
@@ -44,12 +44,12 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive__scene.is-entering { z-index:4; visibility:visible; transform:translateY(0); }
 .painter-archive__scene.is-leaving-up { z-index:3; visibility:visible; transform:translateY(-100%); }
 .painter-archive__scene.is-leaving-down { z-index:3; visibility:visible; transform:translateY(100%); }
-.painter-archive__visual { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(92deg,rgba(255,255,255,.24),rgba(244,215,106,.12)),repeating-linear-gradient(90deg,rgba(92,70,22,.035) 0,rgba(92,70,22,.035) 1px,transparent 1px,transparent 7px),#f4d76a; }
+.painter-archive__visual { position:absolute; inset:0; display:grid; place-items:center; background:linear-gradient(92deg,rgba(255,255,255,.26),rgba(241,239,234,.14)),repeating-linear-gradient(90deg,rgba(92,70,22,.026) 0,rgba(92,70,22,.026) 1px,transparent 1px,transparent 7px),#f1efea; }
 .painter-archive__art-link { display:block; width:min(54vw,820px); height:min(70vh,700px); transform:translateX(-8vw) scale(.94); transition:transform 680ms cubic-bezier(.2,.8,.2,1); }
 .painter-archive__art { display:block; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 15px 14px rgba(43,35,24,.2)); }
 .painter-archive__wear { position:absolute; right:11vw; bottom:max(96px,calc((100% - min(70vh,700px)) / 2 + 46px)); width:clamp(230px,25vw,410px); height:clamp(220px,38vh,390px); background:transparent; padding:0; transform:translate3d(0,0,0); opacity:0; transition:520ms cubic-bezier(.2,.8,.2,1) 80ms; box-shadow:none; color:#111; text-decoration:none; }
 .painter-archive__wear-image { display:block; width:100%; height:100%; color:inherit; text-decoration:none; }
-.painter-archive__wear img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 14px 20px rgba(43,35,24,.16)); }
+.painter-archive__wear img { width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 14px 20px rgba(43,35,24,.16)); mix-blend-mode:multiply; }
 .painter-archive__wear-actions { position:absolute; left:50%; top:calc(100% + 12px); display:flex; gap:8px; transform:translateX(-50%); white-space:nowrap; }
 .painter-archive__cart-action { display:inline-flex; align-items:center; justify-content:center; min-height:31px; padding:0 12px; border:1px solid #111; background:#111; color:#fff; font-size:10px; font-weight:700; letter-spacing:.02em; text-transform:uppercase; text-decoration:none; }
 .painter-archive__cart-action.is-secondary { background:rgba(247,246,242,.92); color:#111; }
@@ -126,9 +126,9 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 	.painter-view-icon--grid { width:6px; height:6px; margin:-9px 0 0 -9px; box-shadow:9px 0 currentColor,0 9px currentColor,9px 9px currentColor; }
 	.painter-archive__actions { gap:15px; }
 	.painter-archive__actions a { font-size:11px; }
-	.painter-archive__offer { top:66px; left:12px; right:auto; bottom:auto; width:250px; max-width:calc(100vw - 24px); min-height:96px; padding:14px 50px 14px 15px; border-radius:9px; }
+	.painter-archive__offer { top:66px; left:12px; right:auto; bottom:auto; width:244px; max-width:calc(100vw - 24px); min-height:96px; padding:14px 45px 14px 15px; border-radius:9px; }
 	.painter-archive__offer p { display:none; }
-	.painter-archive__offer strong { margin-bottom:5px; font-size:19px; line-height:1; }
+	.painter-archive__offer strong { margin-bottom:8px; font-size:19px; line-height:1; }
 	.painter-archive__offer span { margin-bottom:0; font-size:11px; line-height:1.15; }
 	.painter-archive__offer a { display:none; }
 	.painter-archive__offer-close { top:10px; right:10px; width:30px; min-width:30px; height:30px; min-height:30px; font-size:25px; }

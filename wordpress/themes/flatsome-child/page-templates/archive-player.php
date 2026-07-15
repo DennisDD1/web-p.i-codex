@@ -39,7 +39,7 @@ $archive_asset_url = static function ( $asset_name, $suffix, $fallback_file ) us
 foreach ( $scenes as &$scene ) {
 	$asset_name       = strtolower( $scene['sku'] );
 	$original_file    = $asset_name . '-1.' . ( 'PTI-013' === $scene['sku'] ? 'png' : 'jpg' );
-	$scene['art']     = $archive_asset_url( $asset_name, '3', $original_file );
+	$scene['art']     = 'PTI-004' === $scene['sku'] ? $asset_uri . 'pti-004-3.png' : $archive_asset_url( $asset_name, '3', $original_file );
 	$scene['wear']    = $archive_asset_url( $asset_name, 'original', $original_file );
 	$scene['product'] = home_url( $scene['product'] );
 	$scene['id']      = url_to_postid( $scene['product'] );
