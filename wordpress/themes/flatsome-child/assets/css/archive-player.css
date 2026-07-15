@@ -87,9 +87,9 @@ body.painter-archive-page .painter-offer-bar { display:none!important; }
 .painter-archive__grid-view { display:none; min-height:100vh; padding:116px 4vw 80px; background:#f2f0eb; }
 .painter-archive[data-current-view="grid"] .painter-archive__viewport,
 .painter-archive[data-current-view="grid"] .painter-archive__caption,
-.painter-archive[data-current-view="grid"] .painter-archive__coverflow,
-.painter-archive[data-current-view="grid"] .painter-archive__offer { display:none; }
+.painter-archive[data-current-view="grid"] .painter-archive__coverflow { display:none; }
 .painter-archive[data-current-view="grid"] { height:auto; min-height:100vh; }
+.painter-archive[data-current-view="grid"] .painter-archive__offer { left:28px; bottom:28px; }
 .painter-archive[data-current-view="grid"] .painter-archive__grid-view { display:block; }
 .painter-archive__grid-head { display:flex; justify-content:space-between; align-items:flex-end; margin:0 0 42px; padding-bottom:18px; border-bottom:1px solid #aaa; }
 .painter-archive__grid-head p { margin:0; font-size:11px; text-transform:uppercase; }
