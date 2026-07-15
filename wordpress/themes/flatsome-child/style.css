@@ -3,7 +3,7 @@ Theme Name: Flatsome Child
 Description: This is a child theme for Flatsome Theme
 Author: UX Themes
 Template: flatsome
-Version: 3.0.33
+Version: 3.0.34
 */
 
 /*************** ADD CUSTOM CSS HERE.   ***************/
@@ -1316,6 +1316,138 @@ Version: 3.0.33
 	}
 }
 
+/* 2026-07-15 visual polish: shop masonry and unified offer card */
+.woocommerce-shop .painter-product-grid,
+.archive.woocommerce .painter-product-grid {
+	display: block !important;
+	column-count: 4;
+	column-gap: 24px;
+	max-width: 1280px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.woocommerce-shop .painter-product-grid > .col,
+.woocommerce-shop .painter-product-grid > .product-small,
+.archive.woocommerce .painter-product-grid > .col,
+.archive.woocommerce .painter-product-grid > .product-small {
+	display: inline-block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: none !important;
+	margin: 0 0 24px !important;
+	break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+}
+
+.woocommerce-shop .painter-product-card,
+.archive.woocommerce .painter-product-card {
+	height: auto;
+}
+
+.painter-offer-bar {
+	width: 310px !important;
+	max-width: calc(100vw - 36px);
+	min-height: 132px;
+	padding: 18px 54px 18px 20px !important;
+	border-radius: 10px;
+	background: rgba(0, 0, 0, 0.82) !important;
+	box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28) !important;
+}
+
+.painter-offer-bar span {
+	min-height: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	font-size: 11px;
+	letter-spacing: 0.14em;
+}
+
+.painter-offer-bar strong {
+	max-width: 210px;
+	font-size: 26px;
+	line-height: 0.98;
+	letter-spacing: 0.01em;
+	text-transform: uppercase;
+}
+
+.painter-offer-bar em {
+	font-size: 14px;
+	line-height: 1.2;
+}
+
+.painter-offer-close {
+	top: 14px;
+	right: 14px;
+	width: 34px;
+	min-width: 34px;
+	max-width: 34px;
+	height: 34px;
+	min-height: 34px;
+	max-height: 34px;
+	background: rgba(255, 255, 255, 0.2);
+	font-size: 28px;
+}
+
+@media only screen and (max-width: 48em) {
+	.woocommerce-shop .painter-product-grid,
+	.archive.woocommerce .painter-product-grid {
+		column-count: 2;
+		column-gap: 14px;
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+
+	.woocommerce-shop .painter-product-grid > .col,
+	.woocommerce-shop .painter-product-grid > .product-small,
+	.archive.woocommerce .painter-product-grid > .col,
+	.archive.woocommerce .painter-product-grid > .product-small {
+		margin-bottom: 14px !important;
+	}
+
+	.painter-offer-bar {
+		left: 14px !important;
+		right: 14px !important;
+		bottom: 14px;
+		width: auto !important;
+		min-height: 106px;
+		padding: 15px 52px 15px 16px !important;
+	}
+
+	.painter-offer-bar span {
+		font-size: 10px;
+	}
+
+	.painter-offer-bar strong {
+		max-width: 190px;
+		font-size: 20px;
+	}
+
+	.painter-offer-bar em {
+		font-size: 12px;
+	}
+
+	.painter-offer-close {
+		top: 12px;
+		right: 12px;
+		width: 30px;
+		min-width: 30px;
+		max-width: 30px;
+		height: 30px;
+		min-height: 30px;
+		max-height: 30px;
+		font-size: 25px;
+	}
+}
+
+@media only screen and (max-width: 380px) {
+	.woocommerce-shop .painter-product-grid,
+	.archive.woocommerce .painter-product-grid {
+		column-count: 1;
+	}
+}
+
 @media only screen and (max-width: 48em) {
 	.painter-offer-bar {
 		position: fixed;
@@ -1427,5 +1559,55 @@ Version: 3.0.33
 		width: 100% !important;
 		max-width: 100% !important;
 		flex: 0 0 100% !important;
+	}
+}
+
+/* Final live overrides, kept last so older Flatsome/product-grid fixes cannot win. */
+.woocommerce-shop .painter-product-grid,
+.archive.woocommerce .painter-product-grid {
+	display: block !important;
+	flex-wrap: initial !important;
+	column-count: 4;
+	column-gap: 24px;
+	max-width: 1280px;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.woocommerce-shop .painter-product-grid > .col,
+.woocommerce-shop .painter-product-grid > .product-small,
+.archive.woocommerce .painter-product-grid > .col,
+.archive.woocommerce .painter-product-grid > .product-small {
+	display: inline-block !important;
+	width: 100% !important;
+	max-width: 100% !important;
+	flex: none !important;
+	margin: 0 0 24px !important;
+	padding: 0 !important;
+	break-inside: avoid;
+	-webkit-column-break-inside: avoid;
+}
+
+@media only screen and (max-width: 48em) {
+	.woocommerce-shop .painter-product-grid,
+	.archive.woocommerce .painter-product-grid {
+		column-count: 2;
+		column-gap: 14px;
+		padding-left: 14px;
+		padding-right: 14px;
+	}
+
+	.woocommerce-shop .painter-product-grid > .col,
+	.woocommerce-shop .painter-product-grid > .product-small,
+	.archive.woocommerce .painter-product-grid > .col,
+	.archive.woocommerce .painter-product-grid > .product-small {
+		margin-bottom: 14px !important;
+	}
+}
+
+@media only screen and (max-width: 380px) {
+	.woocommerce-shop .painter-product-grid,
+	.archive.woocommerce .painter-product-grid {
+		column-count: 1;
 	}
 }
