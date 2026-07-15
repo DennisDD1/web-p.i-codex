@@ -27,20 +27,23 @@ endif;
 $scenes    = require $theme_dir . '/inc/archive-products.php';
 $asset_uri = $theme_uri . '/assets/archive-products/';
 $asset_dir = $theme_dir . '/assets/archive-products/';
-$archive_asset_url = static function ( $asset_name, $suffix, $fallback_file ) use ( $asset_dir, $asset_uri ) {
+$archive_asset_file = static function ( $asset_name, $suffix ) use ( $asset_dir, $asset_uri ) {
 	foreach ( array( 'jpg', 'jpeg', 'png', 'webp' ) as $extension ) {
 		$file_name = $asset_name . '-' . $suffix . '.' . $extension;
 		if ( file_exists( $asset_dir . $file_name ) ) {
 			return $asset_uri . $file_name;
 		}
 	}
-	return $asset_uri . $fallback_file;
+	return '';
+};
+$archive_asset_url = static function ( $asset_name, $suffix, $fallback_file ) use ( $asset_uri, $archive_asset_file ) {
+	return $archive_asset_file( $asset_name, $suffix ) ?: $asset_uri . $fallback_file;
 };
 foreach ( $scenes as &$scene ) {
 	$asset_name       = strtolower( $scene['sku'] );
 	$original_file    = $asset_name . '-1.' . ( 'PTI-013' === $scene['sku'] ? 'png' : 'jpg' );
 	$scene['art']     = 'PTI-004' === $scene['sku'] ? $asset_uri . 'pti-004-3.png' : $archive_asset_url( $asset_name, '3', $original_file );
-	$scene['wear']    = $archive_asset_url( $asset_name, 'original', $original_file );
+	$scene['wear']    = $archive_asset_file( $asset_name, 'original-transparent' ) ?: $archive_asset_url( $asset_name, 'original', $original_file );
 	$scene['product'] = home_url( $scene['product'] );
 	$scene['id']      = url_to_postid( $scene['product'] );
 }
